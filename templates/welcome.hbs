@@ -1,0 +1,13 @@
+<h2>{{name}}!</h2>
+<p>
+  Our theme parts mimics all the famous locations of Middle Earth such as:
+  {{#each areaType}}
+    {{Area}} {{Residents}}
+    {{#unless @last}}
+      ,
+    {{/unless}}
+    {{#if @last}}
+    .
+    {{/if}}
+  {{/each}}
+</p>
