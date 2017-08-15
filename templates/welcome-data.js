@@ -7,27 +7,27 @@ let welcomeData = {
     },
     {
       Area: "Isengard",
-      Residents: "manned by Saruman",
+      Residents: "manned by Saruman"
     },
     {
       Area: "Rivendell",
-      Residents: "of the Elven Folk",
+      Residents: "of the Elven Folk"
     },
     {
       Area: "Gondor",
-      Residents: "the greatest Realm of Men",
+      Residents: "the greatest Realm of Men"
     },
     {
       Area: "Lothlorien",
-      Residents: "the Elven center of resistance",
+      Residents: "the Elven center of resistance"
     },
     {
       Area: "Misty Mountains",
-      Residents: "of Middle Earth",
+      Residents: "of Middle Earth"
     },
     {
       Area: "Mordor",
-      Residents: "Sauron's stomping grounds",
+      Residents: "Sauron's stomping grounds"
     }
   ]
 };
