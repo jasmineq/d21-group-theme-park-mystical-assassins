@@ -1,0 +1,120 @@
+Dont touch this file
+
+
+
+<!-- 
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"> </a>
+      <img src="images/assassin.png" class="img-responsive" alt="Cinque Terre" width="60" height="60">
+    </div>
+    <div class="navbar-form navbar-right">
+      <div class="input-group">
+        <input type="text" class="form-control" id="form-control" placeholder="Search">
+        <div class="input-group-btn">
+          <button class="btn btn-default" >
+            <i class="glyphicon glyphicon-search"></i>
+            </button>
+
+          <div class="input-group clockpicker">
+
+    <span class="input-group-addon">
+        <span class="glyphicon glyphicon-time"></span>
+    </span>
+</div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="btn-group btn-group-justified">
+    <a href="#" class="btn btn-primary">8-11</a>
+    <a href="#" class="btn btn-primary">11-1</a>
+    <a href="#" class="btn btn-primary">1-4</a>
+    <a href="#" class="btn btn-primary">4-7</a>
+  </div>
+<style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 500px}
+
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+
+    .navbar-inverse {
+    background-color: #222;
+    border-color: #080808;
+    margin-bottom: 0;
+}
+
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;}
+    }
+  </style>
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <h4>Area Name</h4>
+      <ul class="nav nav-pills nav-stacked">
+
+      <div class="input-group">
+        </div>
+    </div>
+<div class="col-sm-9">
+      <h4><small>MAP OF MIDDLE EARTH</small></h4>
+      <hr>
+             <div class="container">
+  <img src="images/map.jpg" class="img-responsive" alt="Cinque Terre" width="600" height="700">
+</div>
+</div>
+</div>
+<footer class="container-fluid">
+  <p>Footer Text</p>
+</footer>
+  <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+  <script src="javascripts/database.js"></script> -->
+
+
+
+
+
+
+  THIS IS WHAT YOU NEEEEEED******************
+
+
+  
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyA-dSXzNUM3xqwBwXorpcgfQrORoTjqvRo",
+    authDomain: "general-firebase.firebaseapp.com",
+    databaseURL: "https://general-firebase.firebaseio.com",
+    projectId: "general-firebase",
+    storageBucket: "general-firebase.appspot.com",
+    messagingSenderId: "782391425240"
+  };
+  firebase.initializeApp(config);
+</script>
