@@ -1,3 +1,11 @@
+"use strict";
+
+console.log("DOM be working Brah");
+
+
+
+
+
 // //f() write
 
 // //f() highlight area

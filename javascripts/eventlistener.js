@@ -1,31 +1,44 @@
 "use strict";
+
 console.log("evenlistener.js");
 
 /*****Nav Bar*****/
 
 $(document).ready(function() {
 
+    var time = new Date();
+    console.log(time);
+
+    
     //Search Bar Enter Event Listener
+    let inputAreaFunc = $('#inputArea').keypress(function(event){
 
-
-  let inputAreaFunc = $('#inputArea').keypress(function(event){
-    if (event.which == 13) {
-        var input = $("#inputArea").val();
-        console.log("this is my input", input); 
-    }
-
+        if (event.which == 13) {
+            var input = $("#inputArea").val();
+            console.log("this is my input", input); 
+        }
     });
+    
 
 
+    // $('#A').bind('hover', function(){
+    //     $(this).text('The Shire', 5000);
+    // });
 
-
-
+    // $('.col-sm-4').on
 
 
 });
 
-// //Search Bar Enter Event Listener
+function highFunc(){    
+    $('h3').on('click', function(){
+        $(this).toggleClass('highlight');
+        console.log("this", $(this));
+        console.log("HEY Friends");
+    });
+}
 
+module.exports = {highFunc};
 
 
 
@@ -36,7 +49,7 @@ $(document).ready(function() {
 
 /*****Time Stamp*****/
 
-//8-11
+//
 //11-1
 //1-4
 //4-7
@@ -67,4 +80,3 @@ $(document).ready(function() {
 
 //Area Div H
 
-//*********module.exports ={all of the functions};*********//
