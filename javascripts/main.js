@@ -1,8 +1,11 @@
-console.log("main.js");
+"use strict";
 
-let Hadlebars = require('hbsfy/runtime');
-let tpData = require('../database.js');
-let tpEventList = require('../eventlisteners.js');
-    //newVarTemplate = require(filepath),
-    //newerVarTemplate = require(filepath);
+let Handlebars = require('hbsfy/runtime'),
+tpData = require('./javascripts/database.js'),
+tpEventList = require('./javascripts/eventlisteners.js'),
+welcomeTemplate = require('../templates/welcome.hbs'),
+welcomeData = require('../templates/welcome-data.js');
 
+// Handlebars.registerPartial('footer', require ('../templates/partials/footer.hbs'));
+console.log("welcomedata", welcomeData);
+$('#welcome').append(welcomeTemplate(welcomeData));
