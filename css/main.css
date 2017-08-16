@@ -1,3 +1,54 @@
+.row.content {
+  height: 500px; }
+
+.sidenav {
+  background-color: #f1f1f1;
+  height: 100%; }
+
+.navbar-inverse {
+  background-color: #222;
+  border-color: #080808;
+  margin-bottom: 0; }
+
+footer {
+  background-color: #555;
+  color: white;
+  padding: 15px;
+  text-align: center; }
+
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px; }
+
+  .row.content {
+    height: auto; } }
+.flexcontainer {
+  background: url(../images/map.jpg);
+  background-size: 700px 429px;
+  background-repeat: no-repeat;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  flex-flow: row wrap;
+  -webkit-align-content: flex-end;
+  align-content: flex-end; }
+
+.col-sm-4 {
+  height: 130px;
+  width: 220px;
+  margin: 3px; }
+
+#time {
+  width: 10%;
+  height: 10%;
+  background-color: yellow; }
+
 #col-sm-9 {
   margin-bottom: 25px; }
 
