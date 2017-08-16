@@ -2,5 +2,4 @@ lib/node_modules
 .DS_Store
 css/
 dist/
-.idea/
-lil/.sass-cache
+lib/.sass-cache
