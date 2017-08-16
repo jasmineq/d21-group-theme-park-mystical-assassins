@@ -3,8 +3,10 @@
 let Handlebars = require('hbsfy/runtime'),
 tpData = require('./database.js'),
 tpEventList = require('./eventlistener.js'),
+
 areaTemplate = require('../templates/area-grid.hbs'),
 descriptionTemplate = require('../templates/description.hbs'),
+
 welcomeTemplate = require('../templates/welcome.hbs'),
 welcomeData = require('../templates/welcome-data.js');
 
