@@ -30,15 +30,23 @@ $(document).ready(function() {
 
 });
 
-function highFunc(){    
+function highFuncAdd(){    
     $('h3').on('click', function(){
-        $(this).toggleClass('highlight');
+        $(this).addClass('highlight');
         console.log("this", $(this));
         console.log("HEY Friends");
     });
 }
 
-module.exports = {highFunc};
+function highFuncRem(){    
+    $('h3').on('click', function(){
+        $(this).removeClass('highlight');
+        console.log("this", $(this));
+        console.log("HEY Friends");
+    });
+}
+
+module.exports = {highFuncAdd, highFuncRem};
 
 
 

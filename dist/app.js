@@ -110,7 +110,6 @@ module.exports = database;
 (3). It will console log that id
 (4). If the name the user typed doesn't equal a name of an attraction, the window will display that "That is not a name"
 */
-
 // searchBar.addEventListener("keyup", function(event){
 //   console.log(event);
 // });
@@ -118,13 +117,11 @@ module.exports = database;
 },{}],2:[function(require,module,exports){
 "use strict";
 
-
 console.log("evenlistener.js");
 
 /*****Nav Bar*****/
 
 $(document).ready(function() {
-
 
     var time = new Date();
     console.log(time);
@@ -148,27 +145,25 @@ $(document).ready(function() {
     // $('.col-sm-4').on
 
 
-
-
-
-
-
-
 });
 
-
-function highFunc(){    
+function highFuncAdd(){    
     $('h3').on('click', function(){
-        $(this).toggleClass('highlight');
+        $(this).addClass('highlight');
         console.log("this", $(this));
         console.log("HEY Friends");
     });
 }
 
-module.exports = {highFunc};
+function highFuncRem(){    
+    $('h3').on('click', function(){
+        $(this).removeClass('highlight');
+        console.log("this", $(this));
+        console.log("HEY Friends");
+    });
+}
 
-// //Search Bar Enter Event Listener
-
+module.exports = {highFuncAdd, highFuncRem};
 
 
 
@@ -179,7 +174,10 @@ module.exports = {highFunc};
 
 /*****Time Stamp*****/
 
-
+//
+//11-1
+//1-4
+//4-7
 
 /******Attraction Description*******/
 
@@ -208,8 +206,6 @@ module.exports = {highFunc};
 //Area Div H
 
 
-//*********module.exports ={all of the functions};*********//
-
 },{}],3:[function(require,module,exports){
 "use strict";
 
@@ -226,7 +222,6 @@ welcomeData = require('../templates/welcome-data.js');
 // Handlebars.registerPartial('footer', require ('../templates/partials/footer.hbs'));
 console.log("welcomedata", welcomeData);
 $('#welcome').append(welcomeTemplate(welcomeData));
-
 
 //Plugging in the AREA template cards for the Area divs
 function populateAreas(areaData){
@@ -250,16 +245,20 @@ tpData.loadAreas()
     (areaFromDatabase) => {
         console.log("area from database", areaFromDatabase);
         populateAreas(areaFromDatabase);
-        tpEventList.highFunc();
-        console.log(tpEventList);        
+        tpEventList.highFuncAdd();
+        tpEventList.highFuncRem();
+        console.log(tpEventList);
+        populateDescription(descriptionTemplate);
+        console.log(descriptionTemplate);
+        
     }
 );
 
 
 
 
-},{"../templates/area-grid.hbs":24,"../templates/description.hbs":25,"../templates/welcome-data.js":26,"../templates/welcome.hbs":27,"./database.js":1,"./eventlistener.js":2,"hbsfy/runtime":23}],4:[function(require,module,exports){
 
+},{"../templates/area-grid.hbs":24,"../templates/description.hbs":25,"../templates/welcome-data.js":26,"../templates/welcome.hbs":27,"./database.js":1,"./eventlistener.js":2,"hbsfy/runtime":23}],4:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -1392,7 +1391,6 @@ module.exports = require('./dist/cjs/handlebars.runtime')['default'];
 module.exports = require("handlebars/runtime")["default"];
 
 },{"handlebars/runtime":22}],24:[function(require,module,exports){
-
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
@@ -1404,7 +1402,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + alias4(((helper = (helper = helpers.colorTheme || (depth0 != null ? depth0.colorTheme : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"colorTheme","hash":{},"data":data}) : helper)))
     + "\">\r\n\r\n        <h3 class=\"\">"
     + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
-    + "-Land</h3>\r\n\r\n    </div>\r\n\r\n";
+    + "</h3>\r\n\r\n    </div>\r\n\r\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 
@@ -1427,7 +1425,6 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
 },"useData":true});
 
 },{"hbsfy/runtime":23}],26:[function(require,module,exports){
-
 let welcomeData = {
   name: "Lord of the Rings Land",
   areaType: [
@@ -1464,9 +1461,7 @@ let welcomeData = {
 
 module.exports = welcomeData;
 
-
 },{}],27:[function(require,module,exports){
-
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
@@ -1476,7 +1471,6 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + alias4(((helper = (helper = helpers.Area || (depth0 != null ? depth0.Area : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Area","hash":{},"data":data}) : helper)))
     + " "
     + alias4(((helper = (helper = helpers.Residents || (depth0 != null ? depth0.Residents : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Residents","hash":{},"data":data}) : helper)))
-
     + "\r\n"
     + ((stack1 = helpers.unless.call(alias1,(data && data.last),{"name":"unless","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + ((stack1 = helpers["if"].call(alias1,(data && data.last),{"name":"if","hash":{},"fn":container.program(4, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
@@ -1484,17 +1478,14 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     return "      ,\r\n";
 },"4":function(container,depth0,helpers,partials,data) {
     return "    .\r\n";
-
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {});
 
   return "<h2>"
     + container.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
-
     + "!</h2>\r\n<p>\r\n  Our theme parts mimics all the famous locations of Middle Earth such as:\r\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.areaType : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</p>\r\n";
-
 },"useData":true});
 
 },{"hbsfy/runtime":23}]},{},[3]);
