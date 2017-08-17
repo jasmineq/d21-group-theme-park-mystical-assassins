@@ -38,6 +38,22 @@ database.loadAttractions = (areaId) => {
 	});
 };
 
+
+database.loadDescription = (descData) => {
+	return new Promise ( function (resolve, reject) {
+
+		let descriptionLoader = new XMLHttpRequest();
+		descriptionLoader.open('GET', `https://testing-firebase-e4781.firebaseio.com/areas.json?orderBy="typeDescription"&equalTo=$"{typeDescription}"`);
+		descriptionLoader.send();
+
+		descriptionLoader.addEventListener('load', function() {
+			let description = JSON.parse(this.responseText);
+			console.log('description: ', description);
+			resolve(description);
+		});
+	});
+};
+
 database.loadAttrType = (typeId) => {
 	return new Promise ( function (resolve, reject){
 
@@ -103,7 +119,7 @@ module.exports = database;
 
 
 
-/* This will hoply do a couple of things 
+/* This will hoply do a couple of things
 (1). Add an event listener to the search bar.
 (2). When the user clicks the enter button in the search bar, the function it points to will send that value to FireBase and return its "area_id"
 (3). It will console log that id

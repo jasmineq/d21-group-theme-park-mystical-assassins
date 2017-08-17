@@ -37,9 +37,17 @@ tpData.loadAreas()
         console.log("area from database", areaFromDatabase);
         populateAreas(areaFromDatabase);
         tpEventList.highFunc();
-        console.log(tpEventList);        
+        console.log(tpEventList);
     }
 );
 
-
+tpData.loadDescription()
+.then(
+  (descFromDatabase) => {
+    console.log('descfromDatabase: ', descFromDatabase);
+    populateDescription(descFromDatabase);
+    tpEventList.descData();
+    console.log(tpEventList);
+  }
+);
 

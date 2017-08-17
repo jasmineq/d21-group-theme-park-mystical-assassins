@@ -9,16 +9,16 @@ $(document).ready(function() {
     var time = new Date();
     console.log(time);
 
-    
+
     //Search Bar Enter Event Listener
     let inputAreaFunc = $('#inputArea').keypress(function(event){
 
         if (event.which == 13) {
             var input = $("#inputArea").val();
-            console.log("this is my input", input); 
+            console.log("this is my input", input);
         }
     });
-    
+
 
 
     // $('#A').bind('hover', function(){
@@ -30,7 +30,7 @@ $(document).ready(function() {
 
 });
 
-function highFunc(){    
+function highFunc(){
     $('h3').on('click', function(){
         $(this).toggleClass('highlight');
         console.log("this", $(this));
@@ -40,10 +40,19 @@ function highFunc(){
 
 module.exports = {highFunc};
 
+function descData() {
+    $('h5').on('click', function() {
+      $(this).toggleClass('descriptionData');
+      console.log('desc this', $(this));
+      console.log('we now have description data weee');
+    });
+  }
+
+  module.exports = {descData};
 
 
 //Current time
-    //What's open at that current hour 
+    //What's open at that current hour
 
 
 
@@ -55,6 +64,19 @@ module.exports = {highFunc};
 //4-7
 
 /******Attraction Description*******/
+
+let descDataa = [];
+let themepark = {};
+
+function grabDescription (data) {
+  let keys = Object.keys(data);
+  keys.forEach((item) => {
+    console.log('keys: ', keys);
+    data[item].firebaseID = item;
+    descDataa.push(data[item]);
+  });
+  console.log('descDataa: ', descDataa);
+}
 
 //Attraction Description 1
 //Attraction Description 2
