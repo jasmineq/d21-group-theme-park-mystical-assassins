@@ -16,24 +16,29 @@ database.loadAreas = () => {
 
 		areaLoader.addEventListener("load", function (){
 			let area = JSON.parse(this.responseText); /*responseText is a buzzword... Use it.*/
-			console.log("area", area);
+			console.log("area has loaded", area);
 			//"fillInventory(area);"
 			resolve(area);
 		});
   });
 };
 
-database.loadAttractions = (areaId) => {
+database.loadAttractions = (iddizzle) => {
 	return new Promise ( function (resolve, reject){
 
 		let attrLoader = new XMLHttpRequest();
-		attrLoader.open('GET', `https://testing-firebase-e4781.firebaseio.com/attractions.json?orderBy="typeId"&equalTo=$"{areaId}"`);
+
+		attrLoader.open('GET', `https://testing-firebase-e4781.firebaseio.com/attractions.json?orderBy="area_id"&equalTo=${iddizzle}`);
+
 		attrLoader.send();
 
 		attrLoader.addEventListener("load", function(){
 			let attr = JSON.parse(this.responseText);
-			console.log("attr", attr);
+
+			console.log("attractions have loaded", attr);
+
 			resolve(attr);
+
 		});
 	});
 };
@@ -47,7 +52,7 @@ database.loadAttrType = (typeId) => {
 
 		attrTypeLoader.addEventListener("load", function(){
 			let attrType = JSON.parse(this.responseText);
-			console.log("attrType", attrType);
+			console.log("Attraction types have loaded", attrType);
 			resolve(attrType);
 		});
 	});
@@ -103,7 +108,7 @@ module.exports = database;
 
 
 
-/* This will hoply do a couple of things 
+/* This will hoply do a couple of things
 (1). Add an event listener to the search bar.
 (2). When the user clicks the enter button in the search bar, the function it points to will send that value to FireBase and return its "area_id"
 (3). It will console log that id

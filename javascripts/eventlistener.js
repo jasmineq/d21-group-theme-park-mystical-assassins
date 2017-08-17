@@ -9,16 +9,16 @@ $(document).ready(function() {
     var time = new Date();
     console.log(time);
 
-    
+
     //Search Bar Enter Event Listener
     let inputAreaFunc = $('#inputArea').keypress(function(event){
 
         if (event.which == 13) {
             var input = $("#inputArea").val();
-            console.log("this is my input", input); 
+            console.log("this is my input", input);
         }
     });
-    
+
 
 
     // $('#A').bind('hover', function(){
@@ -30,20 +30,14 @@ $(document).ready(function() {
 
 });
 
-function highFunc(){    
-    $('h3').on('click', function(){
-        $(this).toggleClass('highlight');
-        console.log("this", $(this));
-        console.log("HEY Friends");
-    });
-}
 
-module.exports = {highFunc};
+
+// module.exports = {highFunc};
 
 
 
 //Current time
-    //What's open at that current hour 
+    //What's open at that current hour
 
 
 
@@ -79,4 +73,3 @@ module.exports = {highFunc};
 //Area Div G
 
 //Area Div H
-
