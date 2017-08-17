@@ -12,7 +12,7 @@ database.loadAreas = () => {
 	return new Promise ( function (resolve, reject){
 
 		let areaLoader = new XMLHttpRequest();
-		areaLoader.open('GET', `https://testing-firebase-e4781.firebaseio.com/areas.json`);
+		areaLoader.open('GET', `https://general-firebase.firebaseio.com/areas.json`);
 		areaLoader.send();
 
 		areaLoader.addEventListener("load", function (){
@@ -28,7 +28,7 @@ database.loadAttractions = (iddizzle) => {
 	return new Promise ( function (resolve, reject){
 
 		let attrLoader = new XMLHttpRequest();
-		attrLoader.open('GET', `https://testing-firebase-e4781.firebaseio.com/attractions.json?orderBy="typeId"&equalTo=${iddizzle}`);
+		attrLoader.open('GET', `https://general-firebase.firebaseio.com/attractions.json?orderBy="area_id"&equalTo=${iddizzle}`);
 		attrLoader.send();
 
 		attrLoader.addEventListener("load", function(){
@@ -43,7 +43,7 @@ database.loadAttrType = (typeId) => {
 	return new Promise ( function (resolve, reject){
 
 		let attrTypeLoader = new XMLHttpRequest();
-		attrTypeLoader.open('GET', `https://testing-firebase-e4781.firebaseio.com/attractions.json?orderBy="typeId"&equalTo=$"{typeId}"`);
+		attrTypeLoader.open('GET', `https://general-firebase.firebaseio.com/attractions.json?orderBy="typeId"&equalTo=$"{typeId}"`);
 		attrTypeLoader.send();
 
 		attrTypeLoader.addEventListener("load", function(){
@@ -191,16 +191,15 @@ $('#welcome').append(welcomeTemplate(welcomeData));
 function populateAreas(areaData){
     let newAreaDiv = document.createElement("div");
     newAreaDiv.innerHTML = areaTemplate(areaData);
-    $('#areaCont').append(newAreaDiv);
+    $('#areaCont').html(newAreaDiv);
     console.log($('#areaCont'));
 }
 
 //Plugging in the information for the Desctription Area
 function populateDescription(descData){
     console.log(descData);
-    let obj = {name: descData};
     let newDescriptionDiv = document.createElement("div");
-    newDescriptionDiv.innerHTML = descriptionTemplate(obj);
+    newDescriptionDiv.innerHTML = descriptionTemplate(descData);
     $('#descriptionArea').html(newDescriptionDiv);
     console.log($('#descriptionArea'));
 }
@@ -216,17 +215,30 @@ tpData.loadAreas()
     }
 );
 
-tpData.loadAttractions(1)
-.then(
-    (attr) => {
-      console.log("hey LOLLLLLLSSSS", attr);
-    });
+// tpData.loadAttractions()
+// .then(
+//     (attr) => {
+//         console.log("hey LOLLLLLLSSSS", attr);
+//     });
 
 
 function highFunc(){
     $(".area").on('click', function(){
         $(this).toggleClass('highlight');
-        console.log("this id", $(this).attr("id"));
+
+        console.log("this id", $(this).attr("id").slice(6));
+
+        let areaId = parseInt($(this).attr("id").slice(6));
+
+        console.log("areaID", typeof areaId);
+
+        tpData.loadAttractions(areaId)
+        .then((attractions) => {
+            console.log("this is in TPData.loadattractions", attractions);
+            populateDescription(attractions);
+        });
+
+
         populateDescription($(this).text());
         console.log($(this).text());
     });
@@ -1373,9 +1385,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
 
   return "\r\n    <div id=\"area--"
     + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
-    + "\" class=\"col-sm-4 area\"  style=\"background-color: #"
-    + alias4(((helper = (helper = helpers.colorTheme || (depth0 != null ? depth0.colorTheme : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"colorTheme","hash":{},"data":data}) : helper)))
-    + "\">\r\n\r\n        <h3 class=\"\">"
+    + "\" class=\"col-sm-4 area\">\r\n\r\n        <h3 class=\"\">"
     + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
     + "</h3>\r\n\r\n    </div>\r\n\r\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -1387,12 +1397,20 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
 },{"hbsfy/runtime":23}],25:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
-module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
     var helper;
 
-  return "\r\n    <h3>"
+  return "\r\n<p><a href=\"#\">Attraction: "
     + container.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"name","hash":{},"data":data}) : helper)))
-    + "</h3>\r\n";
+    + "  </a></p>\r\n\r\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {});
+
+  return "<h3>Area: "
+    + container.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
+    + "</h3>\r\n\r\n"
+    + ((stack1 = helpers.each.call(alias1,depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\r\n";
 },"useData":true});
 
 },{"hbsfy/runtime":23}],26:[function(require,module,exports){
