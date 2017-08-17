@@ -17,24 +17,29 @@ database.loadAreas = () => {
 
 		areaLoader.addEventListener("load", function (){
 			let area = JSON.parse(this.responseText); /*responseText is a buzzword... Use it.*/
-			console.log("area", area);
+			console.log("area has loaded", area);
 			//"fillInventory(area);"
 			resolve(area);
 		});
   });
 };
 
-database.loadAttractions = (areaId) => {
+database.loadAttractions = (iddizzle) => {
 	return new Promise ( function (resolve, reject){
 
 		let attrLoader = new XMLHttpRequest();
-		attrLoader.open('GET', `https://testing-firebase-e4781.firebaseio.com/attractions.json?orderBy="typeId"&equalTo=$"{areaId}"`);
+
+		attrLoader.open('GET', `https://testing-firebase-e4781.firebaseio.com/attractions.json?orderBy="area_id"&equalTo=${iddizzle}`);
+
 		attrLoader.send();
 
 		attrLoader.addEventListener("load", function(){
 			let attr = JSON.parse(this.responseText);
-			console.log("attr", attr);
+
+			console.log("attractions have loaded", attr);
+
 			resolve(attr);
+
 		});
 	});
 };
@@ -48,7 +53,7 @@ database.loadAttrType = (typeId) => {
 
 		attrTypeLoader.addEventListener("load", function(){
 			let attrType = JSON.parse(this.responseText);
-			console.log("attrType", attrType);
+			console.log("Attraction types have loaded", attrType);
 			resolve(attrType);
 		});
 	});
@@ -104,13 +109,12 @@ module.exports = database;
 
 
 
-/* This will hoply do a couple of things 
+/* This will hoply do a couple of things
 (1). Add an event listener to the search bar.
 (2). When the user clicks the enter button in the search bar, the function it points to will send that value to FireBase and return its "area_id"
 (3). It will console log that id
 (4). If the name the user typed doesn't equal a name of an attraction, the window will display that "That is not a name"
 */
-
 // searchBar.addEventListener("keyup", function(event){
 //   console.log(event);
 // });
@@ -118,27 +122,25 @@ module.exports = database;
 },{}],2:[function(require,module,exports){
 "use strict";
 
-
 console.log("evenlistener.js");
 
 /*****Nav Bar*****/
 
 $(document).ready(function() {
 
-
     var time = new Date();
     console.log(time);
 
-    
+
     //Search Bar Enter Event Listener
     let inputAreaFunc = $('#inputArea').keypress(function(event){
 
         if (event.which == 13) {
             var input = $("#inputArea").val();
-            console.log("this is my input", input); 
+            console.log("this is my input", input);
         }
     });
-    
+
 
 
     // $('#A').bind('hover', function(){
@@ -148,38 +150,25 @@ $(document).ready(function() {
     // $('.col-sm-4').on
 
 
-
-
-
-
-
-
 });
 
 
-function highFunc(){    
-    $('h3').on('click', function(){
-        $(this).toggleClass('highlight');
-        console.log("this", $(this));
-        console.log("HEY Friends");
-    });
-}
 
-module.exports = {highFunc};
-
-// //Search Bar Enter Event Listener
-
+// module.exports = {highFunc};
 
 
 
 //Current time
-    //What's open at that current hour 
+    //What's open at that current hour
 
 
 
 /*****Time Stamp*****/
 
-
+//
+//11-1
+//1-4
+//4-7
 
 /******Attraction Description*******/
 
@@ -207,9 +196,6 @@ module.exports = {highFunc};
 
 //Area Div H
 
-
-//*********module.exports ={all of the functions};*********//
-
 },{}],3:[function(require,module,exports){
 "use strict";
 
@@ -227,7 +213,6 @@ welcomeData = require('../templates/welcome-data.js');
 console.log("welcomedata", welcomeData);
 $('#welcome').append(welcomeTemplate(welcomeData));
 
-
 //Plugging in the AREA template cards for the Area divs
 function populateAreas(areaData){
     let newAreaDiv = document.createElement("div");
@@ -238,9 +223,11 @@ function populateAreas(areaData){
 
 //Plugging in the information for the Desctription Area
 function populateDescription(descData){
+    console.log(descData);
+    let obj = {name: descData};
     let newDescriptionDiv = document.createElement("div");
-    newDescriptionDiv.innerHTML = descriptionTemplate(descData);
-    $('#descriptionArea').append(newDescriptionDiv);
+    newDescriptionDiv.innerHTML = descriptionTemplate(obj);
+    $('#descriptionArea').html(newDescriptionDiv);
     console.log($('#descriptionArea'));
 }
 
@@ -250,16 +237,29 @@ tpData.loadAreas()
     (areaFromDatabase) => {
         console.log("area from database", areaFromDatabase);
         populateAreas(areaFromDatabase);
-        tpEventList.highFunc();
-        console.log(tpEventList);        
+        highFunc();
+        console.log(tpEventList);
     }
 );
 
+tpData.loadAttractions(1)
+.then(
+    (attr) => {
+      console.log("hey LOLLLLLLSSSS", attr);
+    });
 
 
+function highFunc(){
+    $(".area").on('click', function(){
+        $(this).toggleClass('highlight');
+        console.log("this id", $(this).attr("id"));
+        populateDescription($(this).text());
+        console.log($(this).text());
+    });
+
+}
 
 },{"../templates/area-grid.hbs":24,"../templates/description.hbs":25,"../templates/welcome-data.js":26,"../templates/welcome.hbs":27,"./database.js":1,"./eventlistener.js":2,"hbsfy/runtime":23}],4:[function(require,module,exports){
-
 'use strict';
 
 exports.__esModule = true;
@@ -1392,7 +1392,6 @@ module.exports = require('./dist/cjs/handlebars.runtime')['default'];
 module.exports = require("handlebars/runtime")["default"];
 
 },{"handlebars/runtime":22}],24:[function(require,module,exports){
-
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
@@ -1400,7 +1399,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
 
   return "\r\n    <div id=\"area--"
     + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
-    + "\" class=\"col-sm-4\"  style=\"background-color: #"
+    + "\" class=\"col-sm-4 area\"  style=\"background-color: #"
     + alias4(((helper = (helper = helpers.colorTheme || (depth0 != null ? depth0.colorTheme : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"colorTheme","hash":{},"data":data}) : helper)))
     + "\">\r\n\r\n        <h3 class=\"\">"
     + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
@@ -1414,20 +1413,15 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
 },{"hbsfy/runtime":23}],25:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
-module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
+module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var helper;
 
   return "\r\n    <h3>"
     + container.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"name","hash":{},"data":data}) : helper)))
-    + "</h3>\r\n\r\n";
-},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1;
-
-  return ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+    + "</h3>\r\n";
 },"useData":true});
 
 },{"hbsfy/runtime":23}],26:[function(require,module,exports){
-
 let welcomeData = {
   name: "Lord of the Rings Land",
   areaType: [
@@ -1464,9 +1458,7 @@ let welcomeData = {
 
 module.exports = welcomeData;
 
-
 },{}],27:[function(require,module,exports){
-
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
@@ -1476,7 +1468,6 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + alias4(((helper = (helper = helpers.Area || (depth0 != null ? depth0.Area : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Area","hash":{},"data":data}) : helper)))
     + " "
     + alias4(((helper = (helper = helpers.Residents || (depth0 != null ? depth0.Residents : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Residents","hash":{},"data":data}) : helper)))
-
     + "\r\n"
     + ((stack1 = helpers.unless.call(alias1,(data && data.last),{"name":"unless","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + ((stack1 = helpers["if"].call(alias1,(data && data.last),{"name":"if","hash":{},"fn":container.program(4, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
@@ -1484,17 +1475,14 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     return "      ,\r\n";
 },"4":function(container,depth0,helpers,partials,data) {
     return "    .\r\n";
-
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {});
 
   return "<h2>"
     + container.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
-
     + "!</h2>\r\n<p>\r\n  Our theme parts mimics all the famous locations of Middle Earth such as:\r\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.areaType : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</p>\r\n";
-
 },"useData":true});
 
 },{"hbsfy/runtime":23}]},{},[3]);
