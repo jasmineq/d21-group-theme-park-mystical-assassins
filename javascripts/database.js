@@ -23,11 +23,11 @@ database.loadAreas = () => {
   });
 };
 
-database.loadAttractions = (areaId) => {
+database.loadAttractions = (iddizzle) => {
 	return new Promise ( function (resolve, reject){
 
 		let attrLoader = new XMLHttpRequest();
-		attrLoader.open('GET', `https://testing-firebase-e4781.firebaseio.com/attractions.json?orderBy="typeId"&equalTo=$"{areaId}"`);
+		attrLoader.open('GET', `https://testing-firebase-e4781.firebaseio.com/attractions.json?orderBy="typeId"&equalTo=${iddizzle}`);
 		attrLoader.send();
 
 		attrLoader.addEventListener("load", function(){
@@ -65,29 +65,8 @@ module.exports = database;
 
 
 
-// let xml = new XMLHttpRequest();
-// xml.open('GET', `https://testing-firebase-e4781.firebaseio.com/areas.json`);
-// console.log("data reslt", `https://testing-firebase-e4781.firebaseio.com/attractions.json`);
-// xml.send();
-// xml.addEventListener("load", function(){
-// 			let data = JSON.parse(this.responseText);
-// 			console.log("data", data);
-//       pullData(data);
-// });
 
-// //This should pull the specific data.
-// function pullData(data){
-//   let keys = Object.keys(data);
-//   keys.forEach((item) => {
-//     // console.log("keys", keys);
-//     data[item].firebaseid = item;
-//     inventory.push( `${data[item].name}, ${data[item].description}`);
 
-// 	});
-
-// }
-
-// console.log("inventory:", inventory);
 
 // //this is getting the value of the search bar.
 // let searchBar = document.getElementById("form-control");

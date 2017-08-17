@@ -24,11 +24,11 @@ database.loadAreas = () => {
   });
 };
 
-database.loadAttractions = (areaId) => {
+database.loadAttractions = (iddizzle) => {
 	return new Promise ( function (resolve, reject){
 
 		let attrLoader = new XMLHttpRequest();
-		attrLoader.open('GET', `https://testing-firebase-e4781.firebaseio.com/attractions.json?orderBy="typeId"&equalTo=$"{areaId}"`);
+		attrLoader.open('GET', `https://testing-firebase-e4781.firebaseio.com/attractions.json?orderBy="typeId"&equalTo=${iddizzle}`);
 		attrLoader.send();
 
 		attrLoader.addEventListener("load", function(){
@@ -66,29 +66,8 @@ module.exports = database;
 
 
 
-// let xml = new XMLHttpRequest();
-// xml.open('GET', `https://testing-firebase-e4781.firebaseio.com/areas.json`);
-// console.log("data reslt", `https://testing-firebase-e4781.firebaseio.com/attractions.json`);
-// xml.send();
-// xml.addEventListener("load", function(){
-// 			let data = JSON.parse(this.responseText);
-// 			console.log("data", data);
-//       pullData(data);
-// });
 
-// //This should pull the specific data.
-// function pullData(data){
-//   let keys = Object.keys(data);
-//   keys.forEach((item) => {
-//     // console.log("keys", keys);
-//     data[item].firebaseid = item;
-//     inventory.push( `${data[item].name}, ${data[item].description}`);
 
-// 	});
-
-// }
-
-// console.log("inventory:", inventory);
 
 // //this is getting the value of the search bar.
 // let searchBar = document.getElementById("form-control");
@@ -126,16 +105,16 @@ $(document).ready(function() {
     var time = new Date();
     console.log(time);
 
-    
+
     //Search Bar Enter Event Listener
     let inputAreaFunc = $('#inputArea').keypress(function(event){
 
         if (event.which == 13) {
             var input = $("#inputArea").val();
-            console.log("this is my input", input); 
+            console.log("this is my input", input);
         }
     });
-    
+
 
 
     // $('#A').bind('hover', function(){
@@ -147,28 +126,14 @@ $(document).ready(function() {
 
 });
 
-function highFuncAdd(){    
-    $('h3').on('click', function(){
-        $(this).addClass('highlight');
-        console.log("this", $(this));
-        console.log("HEY Friends");
-    });
-}
 
-function highFuncRem(){    
-    $('h3').on('click', function(){
-        $(this).removeClass('highlight');
-        console.log("this", $(this));
-        console.log("HEY Friends");
-    });
-}
 
-module.exports = {highFuncAdd, highFuncRem};
+// module.exports = {highFunc};
 
 
 
 //Current time
-    //What's open at that current hour 
+    //What's open at that current hour
 
 
 
@@ -205,7 +170,6 @@ module.exports = {highFuncAdd, highFuncRem};
 
 //Area Div H
 
-
 },{}],3:[function(require,module,exports){
 "use strict";
 
@@ -233,9 +197,11 @@ function populateAreas(areaData){
 
 //Plugging in the information for the Desctription Area
 function populateDescription(descData){
+    console.log(descData);
+    let obj = {name: descData};
     let newDescriptionDiv = document.createElement("div");
-    newDescriptionDiv.innerHTML = descriptionTemplate(descData);
-    $('#descriptionArea').append(newDescriptionDiv);
+    newDescriptionDiv.innerHTML = descriptionTemplate(obj);
+    $('#descriptionArea').html(newDescriptionDiv);
     console.log($('#descriptionArea'));
 }
 
@@ -245,18 +211,27 @@ tpData.loadAreas()
     (areaFromDatabase) => {
         console.log("area from database", areaFromDatabase);
         populateAreas(areaFromDatabase);
-        tpEventList.highFuncAdd();
-        tpEventList.highFuncRem();
+        highFunc();
         console.log(tpEventList);
-        populateDescription(descriptionTemplate);
-        console.log(descriptionTemplate);
-        
     }
 );
 
+tpData.loadAttractions(1)
+.then(
+    (attr) => {
+      console.log("hey LOLLLLLLSSSS", attr);
+    });
 
 
+function highFunc(){
+    $(".area").on('click', function(){
+        $(this).toggleClass('highlight');
+        console.log("this id", $(this).attr("id"));
+        populateDescription($(this).text());
+        console.log($(this).text());
+    });
 
+}
 
 },{"../templates/area-grid.hbs":24,"../templates/description.hbs":25,"../templates/welcome-data.js":26,"../templates/welcome.hbs":27,"./database.js":1,"./eventlistener.js":2,"hbsfy/runtime":23}],4:[function(require,module,exports){
 'use strict';
@@ -1398,7 +1373,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
 
   return "\r\n    <div id=\"area--"
     + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
-    + "\" class=\"col-sm-4\"  style=\"background-color: #"
+    + "\" class=\"col-sm-4 area\"  style=\"background-color: #"
     + alias4(((helper = (helper = helpers.colorTheme || (depth0 != null ? depth0.colorTheme : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"colorTheme","hash":{},"data":data}) : helper)))
     + "\">\r\n\r\n        <h3 class=\"\">"
     + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
@@ -1412,16 +1387,12 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
 },{"hbsfy/runtime":23}],25:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
-module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
+module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var helper;
 
   return "\r\n    <h3>"
     + container.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"name","hash":{},"data":data}) : helper)))
-    + "</h3>\r\n\r\n";
-},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1;
-
-  return ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+    + "</h3>\r\n";
 },"useData":true});
 
 },{"hbsfy/runtime":23}],26:[function(require,module,exports){

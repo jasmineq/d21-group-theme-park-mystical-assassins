@@ -24,9 +24,11 @@ function populateAreas(areaData){
 
 //Plugging in the information for the Desctription Area
 function populateDescription(descData){
+    console.log(descData);
+    let obj = {name: descData};
     let newDescriptionDiv = document.createElement("div");
-    newDescriptionDiv.innerHTML = descriptionTemplate(descData);
-    $('#descriptionArea').append(newDescriptionDiv);
+    newDescriptionDiv.innerHTML = descriptionTemplate(obj);
+    $('#descriptionArea').html(newDescriptionDiv);
     console.log($('#descriptionArea'));
 }
 
@@ -36,15 +38,24 @@ tpData.loadAreas()
     (areaFromDatabase) => {
         console.log("area from database", areaFromDatabase);
         populateAreas(areaFromDatabase);
-        tpEventList.highFuncAdd();
-        tpEventList.highFuncRem();
+        highFunc();
         console.log(tpEventList);
-        populateDescription(descriptionTemplate);
-        console.log(descriptionTemplate);
-        
     }
 );
 
+tpData.loadAttractions(1)
+.then(
+    (attr) => {
+      console.log("hey LOLLLLLLSSSS", attr);
+    });
 
 
+function highFunc(){
+    $(".area").on('click', function(){
+        $(this).toggleClass('highlight');
+        console.log("this id", $(this).attr("id"));
+        populateDescription($(this).text());
+        console.log($(this).text());
+    });
 
+}
