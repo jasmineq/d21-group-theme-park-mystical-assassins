@@ -11,7 +11,7 @@ database.loadAreas = () => {
 	return new Promise ( function (resolve, reject){
 
 		let areaLoader = new XMLHttpRequest();
-		areaLoader.open('GET', `https://testing-firebase-e4781.firebaseio.com/areas.json`);
+		areaLoader.open('GET', `https://general-firebase.firebaseio.com/areas.json`);
 		areaLoader.send();
 
 		areaLoader.addEventListener("load", function (){
@@ -27,7 +27,7 @@ database.loadAttractions = (iddizzle) => {
 	return new Promise ( function (resolve, reject){
 
 		let attrLoader = new XMLHttpRequest();
-		attrLoader.open('GET', `https://testing-firebase-e4781.firebaseio.com/attractions.json?orderBy="typeId"&equalTo=${iddizzle}`);
+		attrLoader.open('GET', `https://general-firebase.firebaseio.com/attractions.json?orderBy="area_id"&equalTo=${iddizzle}`);
 		attrLoader.send();
 
 		attrLoader.addEventListener("load", function(){
@@ -42,7 +42,7 @@ database.loadAttrType = (typeId) => {
 	return new Promise ( function (resolve, reject){
 
 		let attrTypeLoader = new XMLHttpRequest();
-		attrTypeLoader.open('GET', `https://testing-firebase-e4781.firebaseio.com/attractions.json?orderBy="typeId"&equalTo=$"{typeId}"`);
+		attrTypeLoader.open('GET', `https://general-firebase.firebaseio.com/attractions.json?orderBy="typeId"&equalTo=$"{typeId}"`);
 		attrTypeLoader.send();
 
 		attrTypeLoader.addEventListener("load", function(){

@@ -66,7 +66,7 @@
             "name": "Mordor",
             "decription": "Here in Tomorrowland, the future is today! So, ready your rockets, boys and girls, as you blast into the twin orbits of innovation and exploration. But Tomorrowland is more than a fascinating collection of gizmos — it's a spaceport where your imagination lands each day to glimpse otherworldly wonders, embark on fantastic voyages, and witness the pioneering of the human spirit.",
             "colorTheme": "3E4D8C"
-        },
+        }
         
     ],
 "attractions": [
@@ -240,7 +240,34 @@
             "description": "Take off on a magical ride above a bustling bazaar aboard an enchanted carpet that you control. Climb aboard a colorful, 4-passenger vehicle and take off into the air as the strings of Middle Eastern music play overhead. ",
             "type_id": 1,
             "area_id": 2
+        },
+        {
+            "id": 25,
+            "name": "Jungle Navigation Co Ltd Skipper Canteen",
+            "description": "Explore the bold, flavorful cuisine of Asia, South America, and Africa with the help of our daring riverboat pilots.",
+            "type_id": 2,
+            "area_id": 2
+        },
+        {
+            "id": 26,
+            "name": "Sunshine Tree Terrace",
+            "description": "Sip on some sunshine with a delicious citrus swirl—a tasty soft-serve ice cream blended with frozen juice. Also, be sure to sample some of our other refreshments, including a raspberry lemonade slush that is sure to leave you beaming! ",
+            "type_id": 2,
+            "area_id": 2
+        },
+        {
+            "id": 27,
+            "name": "Aloha Isle",
+            "description": "Dole out a smile with the much sought-after soft-serve delight known as the Dole Whip®—a popular frozen treat blended in pineapple, vanilla or swirled flavors. Frosty floats, fresh pineapple spears and soft drinks are also available. ",
+            "type_id": 2,
+            "area_id": 2
+        },
+        {
+            "id": 28,
+            "name": "Tortuga Tavern",
+            "description": "Steal away to this delightful pirate haunt and prepare for the tastiest grub this side of Port Royal! Featuring savory turkey legs and hot dog..."
         }
+        
     ],
 "attraction_types":[
         {

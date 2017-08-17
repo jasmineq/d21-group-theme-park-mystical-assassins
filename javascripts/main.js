@@ -18,16 +18,15 @@ $('#welcome').append(welcomeTemplate(welcomeData));
 function populateAreas(areaData){
     let newAreaDiv = document.createElement("div");
     newAreaDiv.innerHTML = areaTemplate(areaData);
-    $('#areaCont').append(newAreaDiv);
+    $('#areaCont').html(newAreaDiv);
     console.log($('#areaCont'));
 }
 
 //Plugging in the information for the Desctription Area
 function populateDescription(descData){
     console.log(descData);
-    let obj = {name: descData};
     let newDescriptionDiv = document.createElement("div");
-    newDescriptionDiv.innerHTML = descriptionTemplate(obj);
+    newDescriptionDiv.innerHTML = descriptionTemplate(descData);
     $('#descriptionArea').html(newDescriptionDiv);
     console.log($('#descriptionArea'));
 }
@@ -43,17 +42,30 @@ tpData.loadAreas()
     }
 );
 
-tpData.loadAttractions(1)
-.then(
-    (attr) => {
-      console.log("hey LOLLLLLLSSSS", attr);
-    });
+// tpData.loadAttractions()
+// .then(
+//     (attr) => {
+//         console.log("hey LOLLLLLLSSSS", attr);
+//     });
 
 
 function highFunc(){
     $(".area").on('click', function(){
         $(this).toggleClass('highlight');
-        console.log("this id", $(this).attr("id"));
+
+        console.log("this id", $(this).attr("id").slice(6));
+
+        let areaId = parseInt($(this).attr("id").slice(6));
+
+        console.log("areaID", typeof areaId);
+
+        tpData.loadAttractions(areaId)
+        .then((attractions) => {
+            console.log("this is in TPData.loadattractions", attractions);
+            populateDescription(attractions);
+        });
+
+
         populateDescription($(this).text());
         console.log($(this).text());
     });
