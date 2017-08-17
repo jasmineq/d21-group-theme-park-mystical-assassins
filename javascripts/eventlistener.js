@@ -68,15 +68,19 @@ function descData() {
 let descDataa = [];
 let themepark = {};
 
-function grabDescription (data) {
+function fillDescription (data) {
   let keys = Object.keys(data);
   keys.forEach((item) => {
     console.log('keys: ', keys);
     data[item].firebaseID = item;
-    descDataa.push(data[item]);
+    description.push(data[item]);
   });
-  console.log('descDataa: ', descDataa);
+  console.log('description: ', description);
 }
+
+themepark.getDescription = () => {
+    return description;
+  };
 
 //Attraction Description 1
 //Attraction Description 2

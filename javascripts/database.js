@@ -39,19 +39,36 @@ database.loadAttractions = (areaId) => {
 };
 
 
-database.loadDescription = (descData) => {
-	return new Promise ( function (resolve, reject) {
+// database.loadDescription = (descData) => {
+// 	return new Promise ( function (resolve, reject) {
 
-		let descriptionLoader = new XMLHttpRequest();
-		descriptionLoader.open('GET', `https://testing-firebase-e4781.firebaseio.com/areas.json?orderBy="typeDescription"&equalTo=$"{typeDescription}"`);
-		descriptionLoader.send();
+// 		let descriptionLoader = new XMLHttpRequest();
+// 		descriptionLoader.open('GET', `https://testing-firebase-e4781.firebaseio.com/areas.json?orderBy="description"&equalTo=$"{description}"`);
+// 		descriptionLoader.send();
 
-		descriptionLoader.addEventListener('load', function() {
-			let description = JSON.parse(this.responseText);
-			console.log('description: ', description);
-			resolve(description);
-		});
-	});
+// 		descriptionLoader.addEventListener('load', function() {
+// 			let description = JSON.parse(this.responseText);
+// 			console.log('description: ', description);
+// 			resolve(description);
+// 		});
+// 	});
+// };
+
+themepark.loadDescription = () => {
+  return new Promise ( function (resolve, reject) {
+    let descriptionLoader = new XMLHttpRequest();
+    descriptionLoader.open('GET', `https://testing-firebase-e4781.firebaseio.com/areas.json?orderBy="description"&equalTo=$"{description}"`);
+    console.log("inventoryLoader", `https://testing-firebase-e4781.firebaseio.com/areas.json?orderBy="description"&equalTo=$"{description}"`);
+    descriptionLoader.send(); //performs it
+
+    descriptionLoader.addEventListener('load', function() {
+      let data = JSON.parse(this.responseText);
+      console.log('data', data);
+      fillDescription(data);
+      console.log('description: ', description);
+      resolve(description);
+    });
+  });
 };
 
 database.loadAttrType = (typeId) => {

@@ -42,12 +42,21 @@ tpData.loadAreas()
 );
 
 tpData.loadDescription()
-.then(
-  (descFromDatabase) => {
-    console.log('descfromDatabase: ', descFromDatabase);
-    populateDescription(descFromDatabase);
-    tpEventList.descData();
-    console.log(tpEventList);
-  }
-);
+    .then((descFromDatabase) => {
+        console.log('descfromDatabase: ', descFromDatabase);
+        populateDescription(descFromDatabase);
+        tpEventList.descData();
+        console.log(tpEventList);
+    });
 
+
+
+// themepark.loadDescription()
+// .then(
+//   (descritptionFromLoad) => {
+//     console.log('descritptionFromLoad: ', descritptionFromLoad);
+//     populateDescription(descritptionFromLoad);
+//   },
+//   (reject) => {
+//   console.log('totally not working..');
+//   });
