@@ -3,6 +3,8 @@
 let Handlebars = require('hbsfy/runtime'),
 tpData = require('./database.js'),
 tpEventList = require('./eventlistener.js'),
+footerData = require('./footer.js'),
+searchBar = require('./searchbar.js'),
 
 areaTemplate = require('../templates/area-grid.hbs'),
 descriptionTemplate = require('../templates/description.hbs'),
@@ -28,7 +30,9 @@ function populateAreas(areaData){
 
 //Plugging in the information for the Desctription Area
 function populateDescription(descData){
+
     console.log("descData, pop description is running", descData);
+
     let newDescriptionDiv = document.createElement("div");
     newDescriptionDiv.innerHTML = descriptionTemplate(descData);
     $('#descriptionArea').html(newDescriptionDiv);
@@ -72,6 +76,7 @@ function highFunc(){
     $(".area").on('click', function(){
         $('#descriptionArea').slideDown('slow');
         $(this).toggleClass('highlight');
+
         
         var me = $(this).children();
         console.log("look at me", me.html());
@@ -87,6 +92,7 @@ function highFunc(){
         tpData.loadAttractions(areaId)
         .then((attractions) => {
             console.log("this is in TPData.loadattractions", attractions);
+
             populateHeader(you);
             populateDescription(attractions);
             addShowDesc();
@@ -102,6 +108,7 @@ function highFunc(){
         populateHeader(you);
 
         // populateDescription($(this).text());
+
         console.log($(this).text());
     });
 

@@ -67,7 +67,7 @@
             "decription": "Here in Tomorrowland, the future is today! So, ready your rockets, boys and girls, as you blast into the twin orbits of innovation and exploration. But Tomorrowland is more than a fascinating collection of gizmos — it's a spaceport where your imagination lands each day to glimpse otherworldly wonders, embark on fantastic voyages, and witness the pioneering of the human spirit.",
             "colorTheme": "3E4D8C"
         }
-        
+
     ],
     "attractions": [
         {
@@ -1049,6 +1049,7 @@
             "area_id": 9
 
         }
+
 ],
 "attraction_types":[
         {

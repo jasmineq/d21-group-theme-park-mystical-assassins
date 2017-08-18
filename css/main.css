@@ -74,6 +74,7 @@ footer {
   margin: 3px;
   text-align: center; }
 
+
 .hidden {
   display: none; }
 
@@ -105,5 +106,6 @@ footer {
   background: lightgray;
   height: 100%;
   overflow: auto; }
+
 
 /*# sourceMappingURL=main.css.map */
