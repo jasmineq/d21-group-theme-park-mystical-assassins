@@ -13,6 +13,7 @@ descHeaderTemplate = require('../templates/desc-header.hbs'),
 welcomeTemplate = require('../templates/welcome.hbs'),
 welcomeData = require('../templates/welcome-data.js');
 
+let currentTarget = null;
 
 
 // Handlebars.registerPartial('footer', require ('../templates/partials/footer.hbs'));
@@ -59,6 +60,16 @@ tpData.loadAreas()
         populateAreas(areaFromDatabase);
         highFunc();
         addShowDesc();
+        // time8Stamperoo();
+        // time9Stamperoo();
+        // time10Stamperoo();
+        // time11Stamperoo();
+        // time12Stamperoo();
+        // time1Stamperoo();
+        // time2Stamperoo();
+        // time3Stamperoo();
+        // time4Stamperoo();
+
         // addHideDesc();
         console.log("tpEventList", tpEventList);
     }
@@ -96,8 +107,15 @@ function highFunc(){
             populateHeader(you);
             populateDescription(attractions);
             addShowDesc();
-            // addHideDesc();
-
+            time8Stamperoo();
+            time9Stamperoo();
+            time10Stamperoo();
+            time11Stamperoo();
+            time12Stamperoo();
+            time1Stamperoo();
+            time2Stamperoo();
+            time3Stamperoo();
+            time4Stamperoo();
             
         });
 
@@ -116,29 +134,109 @@ function highFunc(){
 
 function addShowDesc(){
     console.log("addShowDesc start");
-    $('h4').on('click', function(){
-        // if ($(this).children().hasClass('breadcrumb')) {
-
-        //     $(this).siblings().toggleClass('hidden breadcrumb');
+    $('h4').on('click', function(){ 
 
 
-            
-        // } else {
+        
+        console.log("currentTarget", currentTarget);
 
-        //     console.log('let this work please');
-        //     // $(this).siblings().toggleClass('hidden breadcrumb');
-        //     $('#togAttrDesc').children().toggleClass('hidden breadcrumb');
-        // }
+        if (currentTarget === null) {
 
+            //     $(this).siblings().toggleClass('hidden breadcrumb');
 
-        $(this).siblings().toggleClass('hidden breadcrumb');
+            $(this).siblings().toggleClass('hidden breadcrumb');
+           
+            currentTarget = $(this);
+        
+            console.log("currentTarget", currentTarget);
+
+        } else {
+
+            console.log("the else statement is working");
+            //     console.log('let this work please');
+            //     // $(this).siblings().toggleClass('hidden breadcrumb');
+            //     $('#togAttrDesc').children().toggleClass('hidden breadcrumb');
+            // }
+            currentTarget.siblings().toggleClass('hidden breadcrumb');
+            console.log("first toggle");
+            currentTarget = $(this);
+            currentTarget.siblings().toggleClass('hidden breadcrumb');
+
 
         // // $(this).siblings().accordion();
-        
-    });
+        }
 
+    });
 }
 
+
+function time8Stamperoo(){
+    $('#8').on('click', function(){
+        console.log("#8");
+
+
+
+    });
+}
+
+function time9Stamperoo(){
+    $('#9').on('click', function(){
+        console.log("#9");
+
+
+    });
+}
+
+function time10Stamperoo(){
+    $('#10').on('click', function(){
+        console.log("#10");
+
+
+    });
+}
+
+function time11Stamperoo(){
+    $('#11').on('click', function(){
+        console.log("#11");
+        
+
+    });
+}
+
+function time12Stamperoo(){
+    $('#12').on('click', function(){
+        console.log("#12");
+
+    });
+}
+
+function time1Stamperoo(){
+    $('#1').on('click', function(){
+        console.log("#1");
+
+    });
+}
+
+function time2Stamperoo(){
+    $('#2').on('click', function(){
+        console.log("#2");
+
+    });
+}
+
+function time3Stamperoo(){
+    $('#3').on('click', function(){
+        console.log("#3");
+
+    });
+}
+
+function time4Stamperoo(){
+    $('#4').on('click', function(){
+        console.log("#4");
+
+    });
+}
 
 // $( "#clickme" ).click(function() {
 //   $( "#book" ).slideToggle( "slow", function() {
