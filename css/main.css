@@ -5,6 +5,9 @@
   background-color: #f1f1f1;
   height: 100%; }
 
+#welcome {
+  text-align-last: center; }
+
 .navbar-inverse {
   background-color: #222;
   border-color: #080808;
@@ -26,6 +29,7 @@ footer {
   .row.content {
     height: auto; } }
 .container {
+  height: 600px;
   background: url(../images/map.jpg);
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -46,12 +50,13 @@ footer {
 
 .col-sm-4 {
   height: 125px;
-  width: 30%;
+  width: 32%;
   margin: 3px;
-  text-align: center; }
+  text-align: center;
+  opacity: 0; }
 
 .col-sm-4:hover {
-  opacity: 0.4;
+  opacity: 0.8;
   background-color: yellow; }
 
 #col-sm-9 {
@@ -74,5 +79,31 @@ footer {
 
 .show {
   display: initial; }
+
+#secondTarget {
+  background: lightgray;
+  text-align: center;
+  width: 421.11px; }
+
+#secondTarget h3 {
+  margin: 0px;
+  padding: 20px; }
+
+#descriptionArea {
+  height: 804px;
+  display: none; }
+
+#inputArea {
+  margin-left: 80%;
+  margin-top: 2%; }
+
+#areaCont {
+  width: fit-content;
+  margin-bottom: 30px; }
+
+.col-sm-3 {
+  background: lightgray;
+  height: 100%;
+  overflow: auto; }
 
 /*# sourceMappingURL=main.css.map */
