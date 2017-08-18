@@ -12,7 +12,7 @@ database.loadAreas = () => {
 	return new Promise ( function (resolve, reject){
 
 		let areaLoader = new XMLHttpRequest();
-		areaLoader.open('GET', `https://testing-firebase-e4781.firebaseio.com/areas.json`);
+		areaLoader.open('GET', `https://general-firebase.firebaseio.com/areas.json`);
 		areaLoader.send();
 
 		areaLoader.addEventListener("load", function (){
@@ -24,11 +24,11 @@ database.loadAreas = () => {
   });
 };
 
-database.loadAttractions = (areaId) => {
+database.loadAttractions = (iddizzle) => {
 	return new Promise ( function (resolve, reject){
 
 		let attrLoader = new XMLHttpRequest();
-		attrLoader.open('GET', `https://testing-firebase-e4781.firebaseio.com/attractions.json?orderBy="typeId"&equalTo=$"{areaId}"`);
+		attrLoader.open('GET', `https://general-firebase.firebaseio.com/attractions.json?orderBy="area_id"&equalTo=${iddizzle}`);
 		attrLoader.send();
 
 		attrLoader.addEventListener("load", function(){
@@ -43,7 +43,7 @@ database.loadAttrType = (typeId) => {
 	return new Promise ( function (resolve, reject){
 
 		let attrTypeLoader = new XMLHttpRequest();
-		attrTypeLoader.open('GET', `https://testing-firebase-e4781.firebaseio.com/attractions.json?orderBy="typeId"&equalTo=$"{typeId}"`);
+		attrTypeLoader.open('GET', `https://general-firebase.firebaseio.com/attractions.json?orderBy="typeId"&equalTo=$"{typeId}"`);
 		attrTypeLoader.send();
 
 		attrTypeLoader.addEventListener("load", function(){
@@ -66,29 +66,8 @@ module.exports = database;
 
 
 
-// let xml = new XMLHttpRequest();
-// xml.open('GET', `https://testing-firebase-e4781.firebaseio.com/areas.json`);
-// console.log("data reslt", `https://testing-firebase-e4781.firebaseio.com/attractions.json`);
-// xml.send();
-// xml.addEventListener("load", function(){
-// 			let data = JSON.parse(this.responseText);
-// 			console.log("data", data);
-//       pullData(data);
-// });
 
-// //This should pull the specific data.
-// function pullData(data){
-//   let keys = Object.keys(data);
-//   keys.forEach((item) => {
-//     // console.log("keys", keys);
-//     data[item].firebaseid = item;
-//     inventory.push( `${data[item].name}, ${data[item].description}`);
 
-// 	});
-
-// }
-
-// console.log("inventory:", inventory);
 
 // //this is getting the value of the search bar.
 // let searchBar = document.getElementById("form-control");
@@ -110,7 +89,6 @@ module.exports = database;
 (3). It will console log that id
 (4). If the name the user typed doesn't equal a name of an attraction, the window will display that "That is not a name"
 */
-
 // searchBar.addEventListener("keyup", function(event){
 //   console.log(event);
 // });
@@ -118,27 +96,25 @@ module.exports = database;
 },{}],2:[function(require,module,exports){
 "use strict";
 
-
 console.log("evenlistener.js");
 
 /*****Nav Bar*****/
 
 $(document).ready(function() {
 
-
     var time = new Date();
     console.log(time);
 
-    
+
     //Search Bar Enter Event Listener
     let inputAreaFunc = $('#inputArea').keypress(function(event){
 
         if (event.which == 13) {
             var input = $("#inputArea").val();
-            console.log("this is my input", input); 
+            console.log("this is my input", input);
         }
     });
-    
+
 
 
     // $('#A').bind('hover', function(){
@@ -148,38 +124,25 @@ $(document).ready(function() {
     // $('.col-sm-4').on
 
 
-
-
-
-
-
-
 });
 
 
-function highFunc(){    
-    $('h3').on('click', function(){
-        $(this).toggleClass('highlight');
-        console.log("this", $(this));
-        console.log("HEY Friends");
-    });
-}
 
-module.exports = {highFunc};
-
-// //Search Bar Enter Event Listener
-
+// module.exports = {highFunc};
 
 
 
 //Current time
-    //What's open at that current hour 
+    //What's open at that current hour
 
 
 
 /*****Time Stamp*****/
 
-
+//
+//11-1
+//1-4
+//4-7
 
 /******Attraction Description*******/
 
@@ -207,15 +170,27 @@ module.exports = {highFunc};
 
 //Area Div H
 
-
-//*********module.exports ={all of the functions};*********//
-
 },{}],3:[function(require,module,exports){
+"use strict";
+
+var foo = new Date();
+let currentDate = foo.getMonth() + 1 + '/' + foo.getDay() + '/' + foo.getFullYear();
+document.getElementById('copyrightYear').innerHTML = currentDate;
+console.log('currentDate', currentDate);
+
+// console.log('time', foo);
+
+console.log('footer.js');
+// $("#footer").html("© Mystical Ninjas" + time);
+
+},{}],4:[function(require,module,exports){
 "use strict";
 
 let Handlebars = require('hbsfy/runtime'),
 tpData = require('./database.js'),
 tpEventList = require('./eventlistener.js'),
+footerData = require('./footer.js'),
+searchBar = require('./searchbar.js'),
 
 areaTemplate = require('../templates/area-grid.hbs'),
 descriptionTemplate = require('../templates/description.hbs'),
@@ -227,20 +202,20 @@ welcomeData = require('../templates/welcome-data.js');
 console.log("welcomedata", welcomeData);
 $('#welcome').append(welcomeTemplate(welcomeData));
 
-
 //Plugging in the AREA template cards for the Area divs
 function populateAreas(areaData){
     let newAreaDiv = document.createElement("div");
     newAreaDiv.innerHTML = areaTemplate(areaData);
-    $('#areaCont').append(newAreaDiv);
+    $('#areaCont').html(newAreaDiv);
     console.log($('#areaCont'));
 }
 
 //Plugging in the information for the Desctription Area
 function populateDescription(descData){
+    console.log(descData);
     let newDescriptionDiv = document.createElement("div");
     newDescriptionDiv.innerHTML = descriptionTemplate(descData);
-    $('#descriptionArea').append(newDescriptionDiv);
+    $('#descriptionArea').html(newDescriptionDiv);
     console.log($('#descriptionArea'));
 }
 
@@ -250,16 +225,44 @@ tpData.loadAreas()
     (areaFromDatabase) => {
         console.log("area from database", areaFromDatabase);
         populateAreas(areaFromDatabase);
-        tpEventList.highFunc();
-        console.log(tpEventList);        
+        highFunc();
+        console.log(tpEventList);
     }
 );
 
+// tpData.loadAttractions()
+// .then(
+//     (attr) => {
+//         console.log("hey LOLLLLLLSSSS", attr);
+//     });
 
 
+function highFunc(){
+    $(".area").on('click', function(){
+        $(this).toggleClass('highlight');
 
-},{"../templates/area-grid.hbs":24,"../templates/description.hbs":25,"../templates/welcome-data.js":26,"../templates/welcome.hbs":27,"./database.js":1,"./eventlistener.js":2,"hbsfy/runtime":23}],4:[function(require,module,exports){
+        console.log("this id", $(this).attr("id").slice(6));
 
+        let areaId = parseInt($(this).attr("id").slice(6));
+
+        console.log("areaID", typeof areaId);
+
+        tpData.loadAttractions(areaId)
+        .then((attractions) => {
+            console.log("this is in TPData.loadattractions", attractions);
+            populateDescription(attractions);
+        });
+
+
+        populateDescription($(this).text());
+        console.log($(this).text());
+    });
+
+}
+
+},{"../templates/area-grid.hbs":26,"../templates/description.hbs":27,"../templates/welcome-data.js":28,"../templates/welcome.hbs":29,"./database.js":1,"./eventlistener.js":2,"./footer.js":3,"./searchbar.js":5,"hbsfy/runtime":25}],5:[function(require,module,exports){
+
+},{}],6:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -327,7 +330,7 @@ exports['default'] = inst;
 module.exports = exports['default'];
 
 
-},{"./handlebars/base":5,"./handlebars/exception":8,"./handlebars/no-conflict":18,"./handlebars/runtime":19,"./handlebars/safe-string":20,"./handlebars/utils":21}],5:[function(require,module,exports){
+},{"./handlebars/base":7,"./handlebars/exception":10,"./handlebars/no-conflict":20,"./handlebars/runtime":21,"./handlebars/safe-string":22,"./handlebars/utils":23}],7:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -433,7 +436,7 @@ exports.createFrame = _utils.createFrame;
 exports.logger = _logger2['default'];
 
 
-},{"./decorators":6,"./exception":8,"./helpers":9,"./logger":17,"./utils":21}],6:[function(require,module,exports){
+},{"./decorators":8,"./exception":10,"./helpers":11,"./logger":19,"./utils":23}],8:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -451,7 +454,7 @@ function registerDefaultDecorators(instance) {
 }
 
 
-},{"./decorators/inline":7}],7:[function(require,module,exports){
+},{"./decorators/inline":9}],9:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -482,7 +485,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{"../utils":21}],8:[function(require,module,exports){
+},{"../utils":23}],10:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -538,7 +541,7 @@ exports['default'] = Exception;
 module.exports = exports['default'];
 
 
-},{}],9:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -586,7 +589,7 @@ function registerDefaultHelpers(instance) {
 }
 
 
-},{"./helpers/block-helper-missing":10,"./helpers/each":11,"./helpers/helper-missing":12,"./helpers/if":13,"./helpers/log":14,"./helpers/lookup":15,"./helpers/with":16}],10:[function(require,module,exports){
+},{"./helpers/block-helper-missing":12,"./helpers/each":13,"./helpers/helper-missing":14,"./helpers/if":15,"./helpers/log":16,"./helpers/lookup":17,"./helpers/with":18}],12:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -627,7 +630,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{"../utils":21}],11:[function(require,module,exports){
+},{"../utils":23}],13:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -723,7 +726,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{"../exception":8,"../utils":21}],12:[function(require,module,exports){
+},{"../exception":10,"../utils":23}],14:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -750,7 +753,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{"../exception":8}],13:[function(require,module,exports){
+},{"../exception":10}],15:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -781,7 +784,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{"../utils":21}],14:[function(require,module,exports){
+},{"../utils":23}],16:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -809,7 +812,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{}],15:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -823,7 +826,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{}],16:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -858,7 +861,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{"../utils":21}],17:[function(require,module,exports){
+},{"../utils":23}],19:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -907,7 +910,7 @@ exports['default'] = logger;
 module.exports = exports['default'];
 
 
-},{"./utils":21}],18:[function(require,module,exports){
+},{"./utils":23}],20:[function(require,module,exports){
 (function (global){
 /* global window */
 'use strict';
@@ -931,7 +934,7 @@ module.exports = exports['default'];
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],19:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -1240,7 +1243,7 @@ function executeDecorators(fn, prog, container, depths, data, blockParams) {
 }
 
 
-},{"./base":5,"./exception":8,"./utils":21}],20:[function(require,module,exports){
+},{"./base":7,"./exception":10,"./utils":23}],22:[function(require,module,exports){
 // Build out our basic SafeString type
 'use strict';
 
@@ -1257,7 +1260,7 @@ exports['default'] = SafeString;
 module.exports = exports['default'];
 
 
-},{}],21:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -1383,51 +1386,51 @@ function appendContextPath(contextPath, id) {
 }
 
 
-},{}],22:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 // Create a simple path alias to allow browserify to resolve
 // the runtime on a supported path.
 module.exports = require('./dist/cjs/handlebars.runtime')['default'];
 
-},{"./dist/cjs/handlebars.runtime":4}],23:[function(require,module,exports){
+},{"./dist/cjs/handlebars.runtime":6}],25:[function(require,module,exports){
 module.exports = require("handlebars/runtime")["default"];
 
-},{"handlebars/runtime":22}],24:[function(require,module,exports){
-
+},{"handlebars/runtime":24}],26:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "\r\n    <div id=\"area--"
+  return "\n    <div id=\"area--"
     + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
-    + "\" class=\"col-sm-4\"  style=\"background-color: #"
-    + alias4(((helper = (helper = helpers.colorTheme || (depth0 != null ? depth0.colorTheme : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"colorTheme","hash":{},"data":data}) : helper)))
-    + "\">\r\n\r\n        <h3 class=\"\">"
+    + "\" class=\"col-sm-4 area\">\n\n        <h3 class=\"\">"
     + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
-    + "-Land</h3>\r\n\r\n    </div>\r\n\r\n";
+    + "</h3>\n\n    </div>\n\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 
   return ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"useData":true});
 
-},{"hbsfy/runtime":23}],25:[function(require,module,exports){
+},{"hbsfy/runtime":25}],27:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
     var helper;
 
-  return "\r\n    <h3>"
+  return "\n<p><a href=\"#\">Attraction: "
     + container.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"name","hash":{},"data":data}) : helper)))
-    + "</h3>\r\n\r\n";
+    + "  </a></p>\n\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1;
+    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {});
 
-  return ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+  return "<h3>Area: "
+    + container.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
+    + "</h3>\n\n"
+    + ((stack1 = helpers.each.call(alias1,depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n";
 },"useData":true});
 
-},{"hbsfy/runtime":23}],26:[function(require,module,exports){
-
+},{"hbsfy/runtime":25}],28:[function(require,module,exports){
 let welcomeData = {
   name: "Lord of the Rings Land",
   areaType: [
@@ -1464,9 +1467,7 @@ let welcomeData = {
 
 module.exports = welcomeData;
 
-
-},{}],27:[function(require,module,exports){
-
+},{}],29:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
@@ -1476,25 +1477,21 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + alias4(((helper = (helper = helpers.Area || (depth0 != null ? depth0.Area : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Area","hash":{},"data":data}) : helper)))
     + " "
     + alias4(((helper = (helper = helpers.Residents || (depth0 != null ? depth0.Residents : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Residents","hash":{},"data":data}) : helper)))
-
-    + "\r\n"
+    + "\n"
     + ((stack1 = helpers.unless.call(alias1,(data && data.last),{"name":"unless","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + ((stack1 = helpers["if"].call(alias1,(data && data.last),{"name":"if","hash":{},"fn":container.program(4, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"2":function(container,depth0,helpers,partials,data) {
-    return "      ,\r\n";
+    return "      ,\n";
 },"4":function(container,depth0,helpers,partials,data) {
-    return "    .\r\n";
-
+    return "    .\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {});
 
   return "<h2>"
     + container.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
-
-    + "!</h2>\r\n<p>\r\n  Our theme parts mimics all the famous locations of Middle Earth such as:\r\n"
+    + "!</h2>\n<p>\n  Our theme parts mimics all the famous locations of Middle Earth such as:\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.areaType : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "</p>\r\n";
-
+    + "</p>\n";
 },"useData":true});
 
-},{"hbsfy/runtime":23}]},{},[3]);
+},{"hbsfy/runtime":25}]},{},[4]);
