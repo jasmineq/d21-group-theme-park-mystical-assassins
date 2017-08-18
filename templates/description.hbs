@@ -1,8 +1,20 @@
-<h3>Area: {{name}}</h3>
+{{#each this}}
 
- {{#each this}}
 
-<p><a href="#">Attraction: {{name}}  </a></p>
+<div class="togAttrDesc">
+<h4><a href="#">Attraction: {{name}}  </a></h4>
+
+    <div class="descSib hidden">
+
+        <p>Description: {{description}}</p>
+
+        <p>{{times}}</p>
+
+    </div>
+
+</div>
 
 {{/each}} 
 
+<div id="secondTarget">
+</div>

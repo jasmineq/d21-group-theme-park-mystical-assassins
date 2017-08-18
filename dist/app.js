@@ -179,6 +179,7 @@ tpEventList = require('./eventlistener.js'),
 
 areaTemplate = require('../templates/area-grid.hbs'),
 descriptionTemplate = require('../templates/description.hbs'),
+descHeaderTemplate = require('../templates/desc-header.hbs'),
 
 welcomeTemplate = require('../templates/welcome.hbs'),
 welcomeData = require('../templates/welcome-data.js');
@@ -189,6 +190,7 @@ $('#welcome').append(welcomeTemplate(welcomeData));
 
 //Plugging in the AREA template cards for the Area divs
 function populateAreas(areaData){
+    console.log("poparea is running");
     let newAreaDiv = document.createElement("div");
     newAreaDiv.innerHTML = areaTemplate(areaData);
     $('#areaCont').html(newAreaDiv);
@@ -197,12 +199,24 @@ function populateAreas(areaData){
 
 //Plugging in the information for the Desctription Area
 function populateDescription(descData){
-    console.log(descData);
+    console.log("descData, pop description is running", descData);
     let newDescriptionDiv = document.createElement("div");
     newDescriptionDiv.innerHTML = descriptionTemplate(descData);
     $('#descriptionArea').html(newDescriptionDiv);
     console.log($('#descriptionArea'));
 }
+
+function populateHeader(descHeader){
+    console.log("descHeader function is running", descHeader);
+    let newDescHeaderDiv = document.createElement("div");
+    newDescHeaderDiv.innerHTML = descHeaderTemplate(descHeader);
+    $('#secondTarget').html(newDescHeaderDiv);
+
+    console.log('descHeader function is complete');
+
+}
+
+
 
 //This is us calling the XHR-requests that we set up in our Database.js
 tpData.loadAreas()
@@ -211,7 +225,9 @@ tpData.loadAreas()
         console.log("area from database", areaFromDatabase);
         populateAreas(areaFromDatabase);
         highFunc();
-        console.log(tpEventList);
+        addShowDesc();
+        addHideDesc();
+        console.log("tpEventList", tpEventList);
     }
 );
 
@@ -223,8 +239,14 @@ tpData.loadAreas()
 
 
 function highFunc(){
+    console.log("I am running");
     $(".area").on('click', function(){
         $(this).toggleClass('highlight');
+        
+        var me = $(this).children();
+        console.log("look at me", me.html());
+        var you = me.html();
+
 
         console.log("this id", $(this).attr("id").slice(6));
 
@@ -235,17 +257,58 @@ function highFunc(){
         tpData.loadAttractions(areaId)
         .then((attractions) => {
             console.log("this is in TPData.loadattractions", attractions);
+            populateHeader(you);
             populateDescription(attractions);
+            addShowDesc();
+            addHideDesc();
+
+            
         });
 
+        
 
-        populateDescription($(this).text());
+        console.log("I ran");
+
+        populateHeader(you);
+
+        // populateDescription($(this).text());
         console.log($(this).text());
     });
 
 }
 
-},{"../templates/area-grid.hbs":24,"../templates/description.hbs":25,"../templates/welcome-data.js":26,"../templates/welcome.hbs":27,"./database.js":1,"./eventlistener.js":2,"hbsfy/runtime":23}],4:[function(require,module,exports){
+function addShowDesc(){
+    console.log("addShowDesc start");
+    $('h4').on('click', function(){
+
+        console.log("meow");
+
+        $(this).siblings().toggleClass('hidden breadcrumb');
+
+        console.log("meowmeomeeowwwwwwww");
+        
+    });
+
+}
+
+
+function addHideDesc(){
+    console.log("addHideDesc start");
+    $('h4').on('focusout', function(){
+        console.log("woof");
+
+        $(this).siblings('.breadcrumb').toggleClass('hidden');
+
+        console.log("bowowoooowoowoowwoo");
+        
+    });
+
+}
+
+
+
+
+},{"../templates/area-grid.hbs":24,"../templates/desc-header.hbs":25,"../templates/description.hbs":26,"../templates/welcome-data.js":27,"../templates/welcome.hbs":28,"./database.js":1,"./eventlistener.js":2,"hbsfy/runtime":23}],4:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -1397,23 +1460,33 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
 },{"hbsfy/runtime":23}],25:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
-module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
-    var helper;
-
-  return "\r\n<p><a href=\"#\">Attraction: "
-    + container.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"name","hash":{},"data":data}) : helper)))
-    + "  </a></p>\r\n\r\n";
-},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {});
-
-  return "<h3>Area: "
-    + container.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
-    + "</h3>\r\n\r\n"
-    + ((stack1 = helpers.each.call(alias1,depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\r\n";
+module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    return "<h3>"
+    + container.escapeExpression(container.lambda(depth0, depth0))
+    + "</h3>\r\n\r\n    \r\n\r\n\r\n";
 },"useData":true});
 
 },{"hbsfy/runtime":23}],26:[function(require,module,exports){
+// hbsfy compiled Handlebars template
+var HandlebarsCompiler = require('hbsfy/runtime');
+module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+  return "\r\n\r\n<div class=\"togAttrDesc\">\r\n<h4><a href=\"#\">Attraction: "
+    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
+    + "  </a></h4>\r\n\r\n    <div class=\"descSib hidden\">\r\n\r\n        <p>Description: "
+    + alias4(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"description","hash":{},"data":data}) : helper)))
+    + "</p>\r\n\r\n        <p>"
+    + alias4(((helper = (helper = helpers.times || (depth0 != null ? depth0.times : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"times","hash":{},"data":data}) : helper)))
+    + "</p>\r\n\r\n    </div>\r\n\r\n</div>\r\n\r\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\r\n<div id=\"secondTarget\">\r\n</div>\r\n";
+},"useData":true});
+
+},{"hbsfy/runtime":23}],27:[function(require,module,exports){
 let welcomeData = {
   name: "Lord of the Rings Land",
   areaType: [
@@ -1450,7 +1523,7 @@ let welcomeData = {
 
 module.exports = welcomeData;
 
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {

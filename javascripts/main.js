@@ -6,6 +6,7 @@ tpEventList = require('./eventlistener.js'),
 
 areaTemplate = require('../templates/area-grid.hbs'),
 descriptionTemplate = require('../templates/description.hbs'),
+descHeaderTemplate = require('../templates/desc-header.hbs'),
 
 welcomeTemplate = require('../templates/welcome.hbs'),
 welcomeData = require('../templates/welcome-data.js');
@@ -16,6 +17,7 @@ $('#welcome').append(welcomeTemplate(welcomeData));
 
 //Plugging in the AREA template cards for the Area divs
 function populateAreas(areaData){
+    console.log("poparea is running");
     let newAreaDiv = document.createElement("div");
     newAreaDiv.innerHTML = areaTemplate(areaData);
     $('#areaCont').html(newAreaDiv);
@@ -24,12 +26,24 @@ function populateAreas(areaData){
 
 //Plugging in the information for the Desctription Area
 function populateDescription(descData){
-    console.log(descData);
+    console.log("descData, pop description is running", descData);
     let newDescriptionDiv = document.createElement("div");
     newDescriptionDiv.innerHTML = descriptionTemplate(descData);
     $('#descriptionArea').html(newDescriptionDiv);
     console.log($('#descriptionArea'));
 }
+
+function populateHeader(descHeader){
+    console.log("descHeader function is running", descHeader);
+    let newDescHeaderDiv = document.createElement("div");
+    newDescHeaderDiv.innerHTML = descHeaderTemplate(descHeader);
+    $('#secondTarget').html(newDescHeaderDiv);
+
+    console.log('descHeader function is complete');
+
+}
+
+
 
 //This is us calling the XHR-requests that we set up in our Database.js
 tpData.loadAreas()
@@ -38,7 +52,9 @@ tpData.loadAreas()
         console.log("area from database", areaFromDatabase);
         populateAreas(areaFromDatabase);
         highFunc();
-        console.log(tpEventList);
+        addShowDesc();
+        addHideDesc();
+        console.log("tpEventList", tpEventList);
     }
 );
 
@@ -50,8 +66,14 @@ tpData.loadAreas()
 
 
 function highFunc(){
+    console.log("I am running");
     $(".area").on('click', function(){
         $(this).toggleClass('highlight');
+        
+        var me = $(this).children();
+        console.log("look at me", me.html());
+        var you = me.html();
+
 
         console.log("this id", $(this).attr("id").slice(6));
 
@@ -62,12 +84,53 @@ function highFunc(){
         tpData.loadAttractions(areaId)
         .then((attractions) => {
             console.log("this is in TPData.loadattractions", attractions);
+            populateHeader(you);
             populateDescription(attractions);
+            addShowDesc();
+            addHideDesc();
+
+            
         });
 
+        
 
-        populateDescription($(this).text());
+        console.log("I ran");
+
+        populateHeader(you);
+
+        // populateDescription($(this).text());
         console.log($(this).text());
     });
 
 }
+
+function addShowDesc(){
+    console.log("addShowDesc start");
+    $('h4').on('click', function(){
+
+        console.log("meow");
+
+        $(this).siblings().toggleClass('hidden breadcrumb');
+
+        console.log("meowmeomeeowwwwwwww");
+        
+    });
+
+}
+
+
+function addHideDesc(){
+    console.log("addHideDesc start");
+    $('h4').on('focusout', function(){
+        console.log("woof");
+
+        $(this).siblings('.breadcrumb').toggleClass('hidden');
+
+        console.log("bowowoooowoowoowwoo");
+        
+    });
+
+}
+
+
+
