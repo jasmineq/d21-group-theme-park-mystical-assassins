@@ -5,6 +5,9 @@
   background-color: #f1f1f1;
   height: 100%; }
 
+#welcome {
+  text-align-last: center; }
+
 .navbar-inverse {
   background-color: #222;
   border-color: #080808;
@@ -26,6 +29,7 @@ footer {
   .row.content {
     height: auto; } }
 .container {
+  height: 600px;
   background: url(../images/map.jpg);
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -70,15 +74,38 @@ footer {
   margin: 3px;
   text-align: center; }
 
+
+.hidden {
+  display: none; }
+
+.show {
+  display: initial; }
+
+#secondTarget {
+  background: lightgray;
+  text-align: center;
+  width: 421.11px; }
+
+#secondTarget h3 {
+  margin: 0px;
+  padding: 20px; }
+
+#descriptionArea {
+  height: 804px;
+  display: none; }
+
 #inputArea {
   margin-left: 80%;
   margin-top: 2%; }
 
 #areaCont {
-  width: fit-content; }
+  width: fit-content;
+  margin-bottom: 30px; }
 
 .col-sm-3 {
   background: lightgray;
-  height: 600px; }
+  height: 100%;
+  overflow: auto; }
+
 
 /*# sourceMappingURL=main.css.map */
