@@ -57,6 +57,12 @@ database.loadAttrType = (typeId) => {
 		});
 	});
 };
+database.searchNames = (searchValue) => {
+	return new Promise (function(resolve, reject){
+		let searchDataLoader = new XMLHttpRequest();
+		searchDataLoader.open('GET', `https://testing-firebase-e4781.firebaseio.com/attractions.json` )
+	})
+}
 
 
 module.exports = database;
