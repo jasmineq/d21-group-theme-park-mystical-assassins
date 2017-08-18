@@ -11,6 +11,8 @@ descHeaderTemplate = require('../templates/desc-header.hbs'),
 welcomeTemplate = require('../templates/welcome.hbs'),
 welcomeData = require('../templates/welcome-data.js');
 
+
+
 // Handlebars.registerPartial('footer', require ('../templates/partials/footer.hbs'));
 console.log("welcomedata", welcomeData);
 $('#welcome').append(welcomeTemplate(welcomeData));
@@ -53,7 +55,7 @@ tpData.loadAreas()
         populateAreas(areaFromDatabase);
         highFunc();
         addShowDesc();
-        addHideDesc();
+        // addHideDesc();
         console.log("tpEventList", tpEventList);
     }
 );
@@ -68,6 +70,7 @@ tpData.loadAreas()
 function highFunc(){
     console.log("I am running");
     $(".area").on('click', function(){
+        $('#descriptionArea').slideDown('slow');
         $(this).toggleClass('highlight');
         
         var me = $(this).children();
@@ -87,7 +90,7 @@ function highFunc(){
             populateHeader(you);
             populateDescription(attractions);
             addShowDesc();
-            addHideDesc();
+            // addHideDesc();
 
             
         });
@@ -107,30 +110,48 @@ function highFunc(){
 function addShowDesc(){
     console.log("addShowDesc start");
     $('h4').on('click', function(){
+        // if ($(this).children().hasClass('breadcrumb')) {
 
-        console.log("meow");
+        //     $(this).siblings().toggleClass('hidden breadcrumb');
+
+
+            
+        // } else {
+
+        //     console.log('let this work please');
+        //     // $(this).siblings().toggleClass('hidden breadcrumb');
+        //     $('#togAttrDesc').children().toggleClass('hidden breadcrumb');
+        // }
+
 
         $(this).siblings().toggleClass('hidden breadcrumb');
 
-        console.log("meowmeomeeowwwwwwww");
+        // // $(this).siblings().accordion();
         
     });
 
 }
 
 
-function addHideDesc(){
-    console.log("addHideDesc start");
-    $('h4').on('focusout', function(){
-        console.log("woof");
+// $( "#clickme" ).click(function() {
+//   $( "#book" ).slideToggle( "slow", function() {
+//     // Animation complete.
+//   });
+// });
 
-        $(this).siblings('.breadcrumb').toggleClass('hidden');
 
-        console.log("bowowoooowoowoowwoo");
+// function addHideDesc(){
+//     console.log("addHideDesc start");
+//     $('h4').on('focusout', function(){
+//         console.log("woof");
+
+//         $(this).siblings('.breadcrumb').toggleClass('hidden');
+
+//         console.log("bowowoooowoowoowwoo");
         
-    });
+//     });
 
-}
+// }
 
 
 

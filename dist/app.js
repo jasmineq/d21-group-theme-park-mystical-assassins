@@ -184,6 +184,8 @@ descHeaderTemplate = require('../templates/desc-header.hbs'),
 welcomeTemplate = require('../templates/welcome.hbs'),
 welcomeData = require('../templates/welcome-data.js');
 
+
+
 // Handlebars.registerPartial('footer', require ('../templates/partials/footer.hbs'));
 console.log("welcomedata", welcomeData);
 $('#welcome').append(welcomeTemplate(welcomeData));
@@ -226,7 +228,7 @@ tpData.loadAreas()
         populateAreas(areaFromDatabase);
         highFunc();
         addShowDesc();
-        addHideDesc();
+        // addHideDesc();
         console.log("tpEventList", tpEventList);
     }
 );
@@ -241,6 +243,7 @@ tpData.loadAreas()
 function highFunc(){
     console.log("I am running");
     $(".area").on('click', function(){
+        $('#descriptionArea').slideDown('slow');
         $(this).toggleClass('highlight');
         
         var me = $(this).children();
@@ -260,7 +263,7 @@ function highFunc(){
             populateHeader(you);
             populateDescription(attractions);
             addShowDesc();
-            addHideDesc();
+            // addHideDesc();
 
             
         });
@@ -280,30 +283,48 @@ function highFunc(){
 function addShowDesc(){
     console.log("addShowDesc start");
     $('h4').on('click', function(){
+        // if ($(this).children().hasClass('breadcrumb')) {
 
-        console.log("meow");
+        //     $(this).siblings().toggleClass('hidden breadcrumb');
+
+
+            
+        // } else {
+
+        //     console.log('let this work please');
+        //     // $(this).siblings().toggleClass('hidden breadcrumb');
+        //     $('#togAttrDesc').children().toggleClass('hidden breadcrumb');
+        // }
+
 
         $(this).siblings().toggleClass('hidden breadcrumb');
 
-        console.log("meowmeomeeowwwwwwww");
+        // // $(this).siblings().accordion();
         
     });
 
 }
 
 
-function addHideDesc(){
-    console.log("addHideDesc start");
-    $('h4').on('focusout', function(){
-        console.log("woof");
+// $( "#clickme" ).click(function() {
+//   $( "#book" ).slideToggle( "slow", function() {
+//     // Animation complete.
+//   });
+// });
 
-        $(this).siblings('.breadcrumb').toggleClass('hidden');
 
-        console.log("bowowoooowoowoowwoo");
+// function addHideDesc(){
+//     console.log("addHideDesc start");
+//     $('h4').on('focusout', function(){
+//         console.log("woof");
+
+//         $(this).siblings('.breadcrumb').toggleClass('hidden');
+
+//         console.log("bowowoooowoowoowwoo");
         
-    });
+//     });
 
-}
+// }
 
 
 
@@ -1472,7 +1493,7 @@ var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "\r\n\r\n<div class=\"togAttrDesc\">\r\n<h4><a href=\"#\">Attraction: "
+  return "\r\n\r\n<div class=\"togAttrDesc\">\r\n<h4><a href=\"#\">"
     + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
     + "  </a></h4>\r\n\r\n    <div class=\"descSib hidden\">\r\n\r\n        <p>Description: "
     + alias4(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"description","hash":{},"data":data}) : helper)))
@@ -1482,7 +1503,8 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+  return "<h3>Attractions: </h3>\r\n\r\n"
+    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "\r\n<div id=\"secondTarget\">\r\n</div>\r\n";
 },"useData":true});
 
