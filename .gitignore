@@ -1,13 +1,5 @@
 lib/node_modules
 .DS_Store
-<<<<<<< HEAD
-
-dist/
-
-lib/.sass-cache
-
-=======
->>>>>>> master
 css/
 dist/
 lib/.sass-cache
