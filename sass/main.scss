@@ -1,3 +1,16 @@
+body {
+	cursor: url('http://www.rw-designer.com/cursor-extern.php?id=54279'), auto;
+}
+
+
+// body {
+//     cursor: url(http://www.rw-designer.com/cursor-extern.php?id=54276);
+// }
+
+.desc-header{
+    width: 400px;
+}
+
 .row.content {height: 500px}
     
 .sidenav {
@@ -42,7 +55,7 @@ footer {
 
 
 .container {
-    height: 600px;
+    height: 440px;
     background: url(../images/map.jpg);
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -69,6 +82,9 @@ footer {
     margin: 3px;
     text-align: center;
     opacity: 0;
+    margin-bottom: 16px;
+    margin-left: 10px;
+
     
 }
 
@@ -92,6 +108,8 @@ footer {
     width: 30%;
     margin: 3px;
     text-align: center;
+    margin-bottom: 16px;
+    margin-left: 8px;
 }
 
 .hidden {
@@ -107,7 +125,7 @@ footer {
 
     background: lightgray;
     text-align: center;
-    width: 421.11px;
+    width: 25%;
 }
 
 #secondTarget h3{
@@ -121,8 +139,9 @@ footer {
 }
 
 #inputArea{
-    margin-left: 80%;
+    margin-left: 60%;
     margin-top: 2%;
+    align-self: center;
 }
 
 #areaCont{

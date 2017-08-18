@@ -1,3 +1,9 @@
+body {
+  cursor: url("http://www.rw-designer.com/cursor-extern.php?id=54279"), auto; }
+
+.desc-header {
+  width: 400px; }
+
 .row.content {
   height: 500px; }
 
@@ -29,7 +35,7 @@ footer {
   .row.content {
     height: auto; } }
 .container {
-  height: 600px;
+  height: 440px;
   background: url(../images/map.jpg);
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -53,7 +59,9 @@ footer {
   width: 32%;
   margin: 3px;
   text-align: center;
-  opacity: 0; }
+  opacity: 0;
+  margin-bottom: 16px;
+  margin-left: 10px; }
 
 .col-sm-4:hover {
   opacity: 0.8;
@@ -72,7 +80,9 @@ footer {
   height: 125px;
   width: 30%;
   margin: 3px;
-  text-align: center; }
+  text-align: center;
+  margin-bottom: 16px;
+  margin-left: 8px; }
 
 .hidden {
   display: none; }
@@ -83,7 +93,7 @@ footer {
 #secondTarget {
   background: lightgray;
   text-align: center;
-  width: 421.11px; }
+  width: 25%; }
 
 #secondTarget h3 {
   margin: 0px;
@@ -94,8 +104,9 @@ footer {
   display: none; }
 
 #inputArea {
-  margin-left: 80%;
-  margin-top: 2%; }
+  margin-left: 60%;
+  margin-top: 2%;
+  align-self: center; }
 
 #areaCont {
   width: fit-content;
