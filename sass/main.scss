@@ -59,14 +59,15 @@ footer {
 
 .col-sm-4{
     height: 125px;
-    width: 30%;
+    width: 32%;
     margin: 3px;
     text-align: center;
+    opacity: 0;
     
 }
 
 .col-sm-4:hover {
-    opacity: 0.4;
+    opacity: 0.8;
     background-color: yellow;
 }
 
@@ -87,11 +88,26 @@ footer {
     text-align: center;
 }
 
+
 .hidden {
     display: none;
 }
 
 .show {
     display: initial;
+}
+
+#inputArea{
+    margin-left: 80%;
+    margin-top: 2%;
+}
+
+#areaCont{
+    width: fit-content;
+}
+
+.col-sm-3 {
+    background: lightgray;
+    height: 600px;
 }
 

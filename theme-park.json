@@ -69,7 +69,7 @@
         }
         
     ],
-"attractions": [
+    "attractions": [
         {
             "id": 1,
             "name": "Walt Disney World Railroad",
@@ -275,6 +275,8 @@
             "description": "Rustle up some vittles on the go at this Old West-style brick building, including hot and crispy chicken breast nuggets and French fries, plus cookies, hot drinks—and ice-cold soft drinks in a Country Bear Jug! ",
             "type_id": 2,
             "area_id": 2
+
+
         },
         {
             "id": 30,
@@ -303,6 +305,7 @@
             "description": "Street rats and princesses alike will find lots to like! This exotic marketplace sells Aladdin and Arabian-themed items. ",
             "type_id": 4,
             "area_id": 3
+
         },
         {
             "id": 34,
@@ -310,6 +313,7 @@
             "description": "Transform into a pirate, empress or mermaid—and even receive a new name—inside this rustic lair. ",
             "type_id": 4,
             "area_id": 3
+          
         },
         {
             "id": 35,
@@ -317,6 +321,7 @@
             "description": "For all ye scurvy scoundrel and wannabe scallywags, meet your mateys at this pirate haunt to pillage and plunder your way through skullduggery T-shirts, hats, candy, snacks, souvenirs and other pirate booty—like yer life depends on it. ",
             "type_id": 4,
             "area_id": 3
+
         },
         {
             "id": 36,
@@ -325,6 +330,7 @@
             "times": ["10:20AM", "2:20PM", "6:30PM"],
             "type_id": 5,
             "area_id": 3
+
         },
         {
             "id": 37,
@@ -551,6 +557,7 @@
             "description": "Follow a winding path through the Enchanted Forest and make your way inside the rocky tunnel of an age-old mountain. Hop into a rustic mine train—hewn together with wood and metal bands—and wind your way up a steep hill.",
             "type_id": 1,
             "area_id": 6
+
         },
         {
             "id": 69,
@@ -572,6 +579,7 @@
             "description": "Real boys and girls can feast on Italian favorites at this quaint cottage, from the chicken parmesan sandwich and flatbread pizzas to pasta dishes, salads and more. To top off your meal, take a trip to Pleasure Island with a serving of tiramisu gelato. ",
             "type_id": 2,
             "area_id": 6
+
         },
         {
             "id": 72,
@@ -607,6 +615,7 @@
             "description": "The manliest of manly places, Gaston's Tavern serves up such satisfying snacks as mixed vegetables cups, hummus with chips, fruit cups and warm cinnamon rolls. Plus, enjoy refreshing beverages like LeFou's Brew—the restaurant's signature non-alcoholic drink.",
             "type_id": 2,
             "area_id": 6
+
         },
         {
             "id": 77,
@@ -628,6 +637,7 @@
             "description": "Disney magic meets Disney music in this spectacular 12-minute 3D fantasy adventure starring Donald Duck.",
             "type_id": 3,
             "area_id": 7
+
         },
         {
             "id": 80,
@@ -663,6 +673,7 @@
             "description": "Forage for all things Pooh and friends at this popular shop next to The Many Adventures of Winnie the Pooh attraction. ",
             "type_id": 4,
             "area_id": 7
+
         },
         {
             "id": 85,
@@ -694,6 +705,7 @@
             "times": ["9:45AM", "12:15PM", "4:40PM", "7:20PM"],
             "type_id": 5,
             "area_id": 7
+
         },
         {
             "id": 89,
@@ -741,6 +753,7 @@
             "description": "Hop atop Dumbo and take off into the air on a joyful journey amid the jubilant sounds of carnival music. Based on Disney’s 1941 animated classic Dumbo, Dumbo the Flying Elephant invites you to accompany everybody’s favorite circus elephant as he discovers his unique ability to fly. ",
             "type_id": 1,
             "area_id": 7
+
         },
         {
             "id": 95,
@@ -762,6 +775,7 @@
             "description": "Come one, come all and gather 'round this three-ring extravaganza for a magical circus packed with zesty snacks, sweet treats and unforgettable souvenirs, including embroidered headwear, kids apparel, home decor and more!",
             "type_id": 3,
             "area_id": 8
+
         },
         {
             "id": 98,
@@ -846,6 +860,7 @@
             "description": "There’s great food in your future—whether you envision a hearty Angus bacon cheeseburger or a healthful chicken Caesar salad. Kids can enjoy peanut butter and jelly, chicken strips or macaroni and cheese. And our delicious drink and dessert choices are ahead of their time! ",
             "type_id": 2,
             "area_id": 8
+
         },
         {
             "id": 110,
@@ -860,6 +875,7 @@
             "description": "Journey with Mickey to the future for a cosmos of character goods at one of the largest shops at Magic Kingdom park. ",
             "type_id": 4,
             "area_id": 8
+
         },
         {
             "id": 112,
@@ -874,6 +890,7 @@
             "description": "Apparel & Accessories, MagicBands",
             "type_id": 4,
             "area_id": 8
+
         },
         {
             "id": 114,
@@ -881,6 +898,7 @@
             "description": "Look for the Little Green Men atop the rocket ship and get your claws on Toy Story and Tomorrowland merchandise. ",
             "type_id": 4,
             "area_id": 8
+          
         },
         {
             "id": 115,
@@ -888,6 +906,7 @@
             "description": "Take home a photo memory of your ride on Buzz Lightyear's Space Ranger Spin or pick up apparel, accessories or toys. ",
             "type_id": 4,
             "area_id": 9
+
         },
         {
             "id": 116,
@@ -895,6 +914,7 @@
             "description": "Blast into orbit as you search for out-of-this-world Disney must-haves, souvenirs and character clothing. ",
             "type_id": 4,
             "area_id": 9
+
         },
         {
             "id": 117,
@@ -902,6 +922,7 @@
             "description": "Discover the power of laughter from the original Monsters of Comedy during a hilarious interactive show. Continuing the zany adventures of Mike Wazowski and company from the hit Disney•Pixar animated films Monsters, Inc. and Monsters University, this fun-filled attraction invites you to be unafraid and laugh out loud.",
             "type_id": 3,
             "area_id": 9
+
         },
         {
             "id": 118,
@@ -910,6 +931,7 @@
             "times": ["9:30AM", "10:20AM", "10:55AM", "11:30AM", "12:00PM", "1:25PM", "2:00PM", "4:15PM", "4:45PM"],
             "type_id": 2,
             "area_id": 9
+
         },
         {
             "id": 119,
@@ -917,6 +939,7 @@
             "description": "Embark on an interactive scavenger hunt to halt Hades in his tracks! The Greek god of the Underworld must retrieve 4 missing shards to reassemble Merlin’s Crystal of the Magic Kingdom and make the park his new summer home. He’s enlisted a brigade of Disney baddies—Yzma, Cruella, Scar, Jafar, Maleficent, Ursula, Ratcliffe and Dr. Facilier—to help track down the fragments, which are hidden throughout the park. It’s up to you to foil their takeover attempts!",
             "type_id": 3,
             "area_id": 9
+
         },
         {
             "id": 120,
@@ -925,6 +948,7 @@
             "times": ["1:40PM", "3:40PM"],
             "type_id": 8,
             "area_id": 9
+
         },
         {
             "id": 121,
@@ -933,6 +957,7 @@
             "times": ["12:45PM"],
             "type_id": 8,
             "area_id": 9
+
         },
         {
             "id": 122,
@@ -941,6 +966,7 @@
             "times": ["12:30PM", "5:45PM", "7:15PM"],
             "type_id": 8,
             "area_id": 9
+
         },
         {
             "id": 123,
@@ -949,6 +975,7 @@
             "times": ["10:30AM", "11:30AM", "1:00PM", "2:00PM", "4:15PM"],
             "type_id": 8,
             "area_id": 9
+
         },
         {
             "id": 124,
@@ -957,6 +984,7 @@
             "times": ["12:10PM", "1:20PM", "2:35PM", "3:40PM", "4:40PM", "5:20PM", "6:15PM"],
             "type_id": 8,
             "area_id": 9
+
         },
         {
             "id": 125,
@@ -965,6 +993,7 @@
             "times": ["9:00AM", "10:00AM", "11:00AM", "12:00PM", "1:00PM"],
             "type_id": 8,
             "area_id": 9
+
         },
         {
             "id": 126,
@@ -973,6 +1002,7 @@
             "times": ["9:00AM", "9:45AM", "11:05AM", "11:45AM", "1:00PM", "1:40PM", "3:45PM"],
             "type_id": 8,
             "area_id": 9
+
         },
         {
             "id": 127,
@@ -981,6 +1011,7 @@
             "times": ["8:55AM"],
             "type_id": 8,
             "area_id": 9
+
         },
         {
             "id": 128,
@@ -989,6 +1020,7 @@
             "times": ["9:20AM", "10:10AM", "12:00PM"],
             "type_id": 8,
             "area_id": 9
+
         },
         {
             "id": 129,
@@ -997,6 +1029,7 @@
             "times": ["9:50AM", "10:50AM", "11:50AM", "12:50PM", "1:50PM"],
             "type_id": 8,
             "area_id": 9
+
         },
         {
             "id": 130,
@@ -1005,6 +1038,7 @@
             "times": ["9:30PM"],
             "type_id": 8,
             "area_id": 9
+
         },
         {
             "id": 131,
@@ -1013,6 +1047,7 @@
             "times": ["9:45PM"],
             "type_id": 8,
             "area_id": 9
+
         }
 ],
 "attraction_types":[
